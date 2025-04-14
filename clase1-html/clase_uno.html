@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Clase 1</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="public/utn_logo.png" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <body>
+    <script src="" async defer></script>
+    <h1>Programación III</h1>
+    <h2>Clase 1 - Introducción HTML</h2>
+    <ul>
+      <li>
+        <p>
+          La etiqueta <b>&lt;link /&gt;</b> nos permite traer recursos externos
+        </p>
+      </li>
+      <li>
+        <p>Es importante respetar la semántica del lenguaje</p>
+      </li>
+      <li>
+        <p>
+          El atributo <b>for</b> en un label es importante porque al hacer click
+          en un input se le pasa el foco
+        </p>
+      </li>
+    </ul>
+
+    <!-- Tipos de Inputs > -->
+    <h3>Tipos de Inputs</h3>
+    <form action="">
+      <h4>Formulario</h4>
+      <label for="txtNombre">Nombre: </label>
+      <input
+        id="txtNombre"
+        name=""
+        type="text"
+        placeholder="Escribe tu nombre"
+      /><br />
+      <label for="selFacultad">Facultad: </label>
+      <select id="selFacultad">
+        <option value="0" disabled selected>Seleccione Facultad</option>
+        <option value="1">UBA</option>
+        <option value="2">UTN</option>
+      </select>
+      <br />
+      <input type="datetime-local" />
+      <input type="submit" value="Enviar" /> <br />
+    </form>
+
+    <!-- Redireccionamiento > -->
+    <h3>Redireccionamiento</h3>
+    <h4>Rutas Absolutas</h4>
+    <p>Las rutas absolutas incluyen todo el path completo</p>
+    <p><b>Ej:</b> ~/Documentos/UTN/HTML</p>
+    <h4>Rutas Relativas</h4>
+    <p>Las rutas relativas se basan en la ubicación del archivo actual</p>
+    <p><b>Ej:</b> ./</p>
+  </body>
+</html>
