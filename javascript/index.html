@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./styles/forms.css" />
+    <link rel="stylesheet" href="./styles/submit.css" />
+  </head>
+
+  <body>
+    <div class="form-container">
+      <form class="abm-form form">
+        <h4>Formulario ABM</h4>
+        <label>
+          <span>ID:</span>
+          <input
+            type="number"
+            name="id"
+            id="id"
+            required
+            min="1"
+            placeholder="Ingrese su ID"
+          />
+        </label>
+        <label>
+          <span>Nombre:</span>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            required
+            placeholder="Ingrese su Nombre"
+          />
+        </label>
+        <label>
+          <span>Apellido:</span>
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            required
+            placeholder="Ingrese su Apellido"
+          />
+        </label>
+        <label>
+          <span>Edad:</span>
+          <input
+            type="number"
+            name="age"
+            id="age"
+            min="15"
+            required
+            placeholder="Ingrese su Edad"
+          />
+        </label>
+        <label>
+          <span>Tipo:</span>
+          <select name="type" id="type" required>
+            <option value="ninguno" disabled selected>
+              Seleccione un Tipo
+            </option>
+            <option value="futbolista">Futbolista</option>
+            <option value="profesional">Profesional</option>
+          </select>
+        </label>
+        <label class="futbolista-field">
+          <span>Equipo:</span>
+          <input
+            type="text"
+            name="team"
+            id="team"
+            placeholder="Ingrese su Equipo"
+          />
+        </label>
+        <label class="futbolista-field">
+          <span>Posicion:</span>
+          <input
+            type="text"
+            name="position"
+            id="position"
+            placeholder="Ingrese su Posicion"
+          />
+        </label>
+        <label class="futbolista-field">
+          <span>Cantidad de goles:</span>
+          <input
+            type="number"
+            name="cantGoles"
+            id="cantGoles"
+            min="0"
+            placeholder="Ingrese la cantidad de goles"
+          />
+        </label>
+        <label class="profesional-field">
+          <span>Titulo:</span>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            placeholder="Ingrese su Titulo"
+          />
+        </label>
+        <label class="profesional-field">
+          <span>Facultad:</span>
+          <input
+            type="text"
+            name="faculty"
+            id="faculty"
+            placeholder="Ingrese su Facultad"
+          />
+        </label>
+        <label class="profesional-field">
+          <span>Año de Graduacion:</span>
+          <input
+            type="number"
+            name="gradYear"
+            id="gradYear"
+            min="1951"
+            placeholder="Ingrese su Año de Graduacion"
+          />
+        </label>
+        <input type="submit" value="Submit" class="submit-button" />
+      </form>
+    </div>
+
+    <!-- <form class="form">
+      <p>Form Datos</p>
+      <div>
+        <label for="name">Filtrar por:</label>
+        <select name="frutas" id="frutas">
+          <option value="manzana">Manzana</option>
+          <option value="naranja">Naranja</option>
+          <option value="plátano">Plátano</option>
+        </select>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <input type="submit" value="Submit" />
+    </form> -->
+
+    <script src="./index.js" type="module" async defer></script>
+  </body>
+</html>
