@@ -3,6 +3,7 @@ import { Persona } from "./models/Persona.js";
 import { Profesional } from "./models/Profesional.js";
 import peopleList from "./constants/index.js";
 import { fillTable, getHeaders } from "./utils/tables.js";
+import { createModal } from "./utils/modals.js";
 
 // 2)Dada la siguiente cadena de caracteres, generar un Array de objetos de la jerarquía del punto 1.
 const createPeople = () => {
@@ -52,6 +53,15 @@ const people = createPeople();
 const type = document.getElementById("type");
 const futbolistasFields = document.querySelectorAll(".futbolista-field");
 const profesionalFields = document.querySelectorAll(".profesional-field");
+
+const abmForm = document.getElementsByClassName("abm-form")[0];
+
+const { modal } = createModal(abmForm);
+
+const openDialogButton = document.getElementById("open-form");
+openDialogButton.addEventListener("click", () => {
+  modal.showModal();
+});
 
 futbolistasFields.forEach((futbolistaField) => {
   futbolistaField.style.display = "none";

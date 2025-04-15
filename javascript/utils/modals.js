@@ -1,0 +1,19 @@
+export const createModal = (child) => {
+  const modal = document.createElement("dialog");
+  modal.classList.add("modal");
+  modal.setAttribute("closedby", "any");
+  modal.appendChild(child);
+  document.body.appendChild(modal);
+
+  const closeButton = document.createElement("input");
+  closeButton.type = "button";
+  closeButton.value = "Close";
+  closeButton.classList.add("submit-button", "--red");
+  child.appendChild(closeButton);
+
+  closeButton.addEventListener("click", () => {
+    modal.close();
+  });
+
+  return { modal };
+};

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="./styles/forms.css" />
     <link rel="stylesheet" href="./styles/submit.css" />
     <link rel="stylesheet" href="./styles/tables.css" />
+    <link rel="stylesheet" href="./styles/modal.css" />
   </head>
 
   <body>
@@ -192,16 +193,16 @@
             <div>
               <label for="filter-title">Titulo</label>
               <input type="checkbox" name="filter-title" id="filter-title" />
-    </div>
-      <div>
+            </div>
+            <div>
               <label for="filter-faculty">Facultad</label>
               <input
                 type="checkbox"
                 name="filter-faculty"
                 id="filter-faculty"
               />
-      </div>
-      <div>
+            </div>
+            <div>
               <label for="filter-gradYear">Graduación</label>
               <input
                 type="checkbox"
@@ -212,12 +213,19 @@
           </div>
         </div>
       </form>
-      </div>
+    </div>
     <!-- Tabla de Datos -->
     <div class="table-container">
       <table class="table">
         <thead id="table-head"></thead>
         <tbody id="table-body"></tbody>
+        <tfoot id="table-foot">
+          <tr>
+            <td>
+              <button class="submit-button" id="open-form">Agregar</button>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
 
