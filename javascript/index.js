@@ -2,6 +2,7 @@ import { Futbolista } from "./models/Futbolista.js";
 import { Persona } from "./models/Persona.js";
 import { Profesional } from "./models/Profesional.js";
 import peopleList from "./constants/index.js";
+import { fillTable, getHeaders } from "./utils/tables.js";
 
 // 2)Dada la siguiente cadena de caracteres, generar un Array de objetos de la jerarquía del punto 1.
 const createPeople = () => {
@@ -43,10 +44,10 @@ const createPeople = () => {
       console.log(e);
     }
   }
-  console.log(people);
+  return people;
 };
 
-createPeople();
+const people = createPeople();
 
 const type = document.getElementById("type");
 const futbolistasFields = document.querySelectorAll(".futbolista-field");
@@ -92,43 +93,11 @@ type.addEventListener("change", (event) => {
   }
 });
 
-// const form = document.querySelector("form");
+// Create table from data
 
-// const handleSubmit = (event) => {
-//   event.preventDefault();
-//   const name = document.querySelector("#name").value;
-//   const email = document.querySelector("#email").value;
-//   console.log(`Name: ${name}, Email: ${email}`);
-//   form.removeEventListener("submit", handleSubmit);
-// };
-// form.addEventListener("submit", handleSubmit);
+const headers = getHeaders(peopleList);
 
-// const title = document.querySelector("h1");
-// title.innerText;
-// const parragraph = document.querySelector("p");
-// setTimeout(() => {
-//   parragraph.innerText = "Hola, como estas?";
-// }, 5000);
+const tableHead = document.getElementById("table-head");
+const tableBody = document.getElementById("table-body");
 
-// const textAnimation = (node, text, interval = 100) => {
-//   let i = 0;
-//   node.textContent = "";
-
-//   const writeChar = () => {
-//     if (i < text.length) {
-//       node.textContent += text[i];
-//       i++;
-//       setTimeout(writeChar, interval);
-//     } else {
-//       setTimeout(() => {
-//         node.textContent = "";
-//         i = 0;
-//         writeChar();
-//       }, 1000);
-//     }
-//   };
-
-//   writeChar();
-// };
-
-// textAnimation(title, "Formulario a completar");
+fillTable(headers, people, tableHead, tableBody);
