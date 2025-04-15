@@ -9,3 +9,12 @@
   display: flex;
   justify-content: space-evenly;
 }
+
+@media (max-width: 768px) {
+  .form-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 15px;
+    gap: 20px;
+  }
+}
