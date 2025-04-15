@@ -9,10 +9,12 @@
     <link rel="stylesheet" href="./index.css" />
     <link rel="stylesheet" href="./styles/forms.css" />
     <link rel="stylesheet" href="./styles/submit.css" />
+    <link rel="stylesheet" href="./styles/tables.css" />
   </head>
 
   <body>
     <div class="form-container">
+      <!-- Formulario ABM -->
       <form class="abm-form form">
         <h4>Formulario ABM</h4>
         <label>
@@ -123,26 +125,94 @@
             placeholder="Ingrese su Año de Graduacion"
           />
         </label>
-        <input type="submit" value="Submit" class="submit-button" />
+        <input type="submit" value="Agregar" class="submit-button" />
       </form>
-    </div>
 
-    <!-- <form class="form">
-      <p>Form Datos</p>
+      <!-- Formulario Datos -->
+      <form class="data-form form">
+        <h4>Formulario Datos</h4>
+        <label>
+          <span>Filtrar por:</span>
+          <select name="personas" id="personas">
+            <option value="persona" selected>Todos</option>
+            <option value="futbolista">Futbolista</option>
+            <option value="profesional">Profesional</option>
+          </select>
+        </label>
+        <label>
+          <span>Edad promedio: </span>
+        </label>
+        <div>
+          <span>Mostrar columnas:</span>
+          <div class="row">
+            <div>
+              <label for="filter-id">ID</label>
+              <input type="checkbox" name="filter-id" id="filter-id" />
+            </div>
+            <div>
+              <label for="filter-name">Nombre</label>
+              <input type="checkbox" name="filter-name" id="filter-name" />
+            </div>
+            <div>
+              <label for="filter-lastName">Apellido</label>
+              <input
+                type="checkbox"
+                name="filter-lastName"
+                id="filter-lastName"
+              />
+            </div>
+            <div>
+              <label for="filter-age">Edad</label>
+              <input type="checkbox" name="filter-age" id="filter-age" />
+            </div>
+            <div>
+              <label for="filter-type">Tipo</label>
+              <input type="checkbox" name="filter-type" id="filter-type" />
+            </div>
+            <div>
+              <label for="filter-team">Equipo</label>
+              <input type="checkbox" name="filter-team" id="filter-team" />
+            </div>
+            <div>
+              <label for="filter-position">Posicion</label>
+              <input
+                type="checkbox"
+                name="filter-position"
+                id="filter-position"
+              />
+            </div>
+            <div>
+              <label for="filter-cantGoles">Goles</label>
+              <input
+                type="checkbox"
+                name="filter-cantGoles"
+                id="filter-cantGoles"
+              />
+            </div>
+            <div>
+              <label for="filter-title">Titulo</label>
+              <input type="checkbox" name="filter-title" id="filter-title" />
+    </div>
       <div>
-        <label for="name">Filtrar por:</label>
-        <select name="frutas" id="frutas">
-          <option value="manzana">Manzana</option>
-          <option value="naranja">Naranja</option>
-          <option value="plátano">Plátano</option>
-        </select>
+              <label for="filter-faculty">Facultad</label>
+              <input
+                type="checkbox"
+                name="filter-faculty"
+                id="filter-faculty"
+              />
       </div>
       <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
+              <label for="filter-gradYear">Graduación</label>
+              <input
+                type="checkbox"
+                name="filter-gradYear"
+                id="filter-gradYear"
+              />
+            </div>
+          </div>
+        </div>
+      </form>
       </div>
-      <input type="submit" value="Submit" />
-    </form> -->
 
     <script src="./index.js" type="module" async defer></script>
   </body>
