@@ -20,6 +20,7 @@ export const fillTable = (headers, data, tableHead, tableBody) => {
 };
 
 export const getHeadersFromArray = (data) => {
+  if (!Array.isArray(data)) throw new Error("Input must be an array");
   return data.reduce((acc, obj) => {
     Object.keys(obj).forEach((key) => acc.add(key));
     return acc;
