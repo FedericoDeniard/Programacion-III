@@ -15,7 +15,7 @@ const peopleList = [
     edad: 35,
     titulo: "Medico",
     facultad: "UBA",
-    añoGraduacion: 20012,
+    añoGraduacion: 2012,
   },
   {
     id: 3,
