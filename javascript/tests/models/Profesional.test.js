@@ -55,4 +55,31 @@ describe("Profesional", () => {
       ).toThrow("Age must be greater than 15");
     });
   });
+
+  describe("Profesional validation", () => {
+    test("should throw an error if title is missing", () => {
+      expect(
+        () => new Profesional(1, "John", "Doe", 30, "", "UTN", 2020)
+      ).toThrow("All fields are required");
+    });
+
+    test("should throw an error if facultad is missing", () => {
+      expect(
+        () => new Profesional(1, "John", "Doe", 30, "Programación", "", 2020)
+      ).toThrow("All fields are required");
+    });
+
+    test("should throw an error if graduation year is not a number", () => {
+      expect(
+        () =>
+          new Profesional(1, "John", "Doe", 30, "Programación", "UTN", "2020")
+      ).toThrow("Graduation year must be a number");
+    });
+
+    test("should throw an error if graduation year is less than 1950", () => {
+      expect(
+        () => new Profesional(1, "John", "Doe", 30, "Programación", "UTN", 1899)
+      ).toThrow("Graduation year must be greater than 1950");
+    });
+  });
 });

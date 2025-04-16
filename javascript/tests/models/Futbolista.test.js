@@ -53,4 +53,42 @@ describe("Futbolista", () => {
       ).toThrow("Age must be greater than 15");
     });
   });
+
+  describe("Futbolista validation", () => {
+    test("should throw an error if equipo is missing", () => {
+      expect(
+        () => new Futbolista(1, "John", "Doe", 30, "", "Delantero", 20)
+      ).toThrow("Team is required");
+    });
+
+    test("should throw an error if posicion is missing", () => {
+      expect(
+        () => new Futbolista(1, "John", "Doe", 30, "Boca", "", 20)
+      ).toThrow("Position is required");
+    });
+
+    test("should throw an error if cantidadGoles is missing", () => {
+      expect(
+        () => new Futbolista(1, "John", "Doe", 30, "Boca", "Delantero")
+      ).toThrow("Goals amount is required");
+    });
+
+    test("should throw an error if equipo or posicion are not strings", () => {
+      expect(
+        () => new Futbolista(1, "John", "Doe", 30, 2, "Delantero", 20)
+      ).toThrow("Team and posicion must be strings");
+    });
+
+    test("should throw an error if cantidadGoles is not a number", () => {
+      expect(
+        () => new Futbolista(1, "John", "Doe", 30, "Boca", "Delantero", "20")
+      ).toThrow("Goals ammount must be a number");
+    });
+
+    test("should throw an error if cantidadGoles is less than 0", () => {
+      expect(
+        () => new Futbolista(1, "John", "Doe", 30, "Boca", "Delantero", -1)
+      ).toThrow("Goals ammount must be greater than 0");
+    });
+  });
 });
