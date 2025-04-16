@@ -56,7 +56,37 @@ const profesionalFields = document.querySelectorAll(".profesional-field");
 
 const abmForm = document.getElementsByClassName("abm-form")[0];
 
-const { modal } = createModal(abmForm);
+const { modal, closeButton } = createModal(abmForm);
+
+const resetProfesionalFields = () => {
+  profesionalFields.forEach((profesionalField) => {
+    profesionalField.style.display = "none";
+    const input = profesionalField.querySelector("input, select");
+    if (input) {
+      input.removeAttribute("required");
+      input.value = null;
+    }
+  });
+};
+
+const resetFutbolistaFields = () => {
+  futbolistasFields.forEach((futbolistaField) => {
+    futbolistaField.style.display = "none";
+    const input = futbolistaField.querySelector("input, select");
+    if (input) {
+      input.removeAttribute("required");
+      input.value = null;
+    }
+  });
+};
+
+closeButton.addEventListener("click", () => {
+  abmForm.reset();
+  type.value = "";
+  console.log("reset");
+  resetFutbolistaFields();
+  resetProfesionalFields();
+});
 
 const openDialogButton = document.getElementById("open-form");
 openDialogButton.addEventListener("click", () => {
@@ -71,23 +101,8 @@ profesionalFields.forEach((profesionalField) => {
 });
 
 type.addEventListener("change", (event) => {
-  futbolistasFields.forEach((futbolistaField) => {
-    futbolistaField.style.display = "none";
-    const input = futbolistaField.querySelector("input, select");
-    if (input) {
-      input.removeAttribute("required");
-      input.value = "";
-    }
-  });
-  profesionalFields.forEach((profesionalField) => {
-    profesionalField.style.display = "none";
-    const input = profesionalField.querySelector("input, select");
-    if (input) {
-      input.removeAttribute("required");
-      input.value = "";
-    }
-  });
-
+  resetFutbolistaFields();
+  resetProfesionalFields();
   if (event.target.value === "futbolista") {
     futbolistasFields.forEach((futbolistaField) => {
       futbolistaField.style.display = "flex";
@@ -111,3 +126,16 @@ const tableHead = document.getElementById("table-head");
 const tableBody = document.getElementById("table-body");
 
 fillTable(headers, people, tableHead, tableBody);
+
+// Form Validation
+const getFormValues = (form) => {
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+  console.log(data);
+};
+
+abmForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+  getFormValues(abmForm);
+  console.log(abmForm);
+});

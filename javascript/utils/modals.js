@@ -15,5 +15,5 @@ export const createModal = (child) => {
     modal.close();
   });
 
-  return { modal };
+  return { modal, closeButton };
 };
