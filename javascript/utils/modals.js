@@ -1,5 +1,6 @@
 export const createModal = (child) => {
   const modal = document.createElement("dialog");
+  child.classList.remove("hidden");
   modal.classList.add("modal");
   modal.setAttribute("closedby", "any");
   modal.appendChild(child);
