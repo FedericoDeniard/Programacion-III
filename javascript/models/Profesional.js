@@ -1,8 +1,8 @@
 import { Persona } from "./Persona.js";
 
 export class Profesional extends Persona {
-  constructor(id, nombre, apellido, edad, titulo, facultad, añoGraduacion) {
-    super(id, nombre, apellido, edad);
+  constructor({ id, nombre, apellido, edad, titulo, facultad, añoGraduacion }) {
+    super({ id, nombre, apellido, edad });
     this.#validateProfesional(titulo, facultad, añoGraduacion);
     this.titulo = titulo;
     this.facultad = facultad;

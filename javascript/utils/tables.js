@@ -1,6 +1,13 @@
-export const fillTable = (headers, data, tableHead, tableBody) => {
+export const fillTable = (
+  headers,
+  data,
+  tableHead,
+  tableBody,
+  hiddenKeys = []
+) => {
   const tableHeadRow = document.createElement("tr");
-  headers.forEach((header) => {
+  const publicHeaders = hiddenValues(headers, hiddenKeys);
+  publicHeaders.forEach((header) => {
     const th = document.createElement("th");
     let textCapitalized = header.charAt(0).toUpperCase() + header.slice(1);
     th.textContent = textCapitalized;
@@ -10,7 +17,7 @@ export const fillTable = (headers, data, tableHead, tableBody) => {
 
   data.forEach((person) => {
     const tableRow = document.createElement("tr");
-    headers.forEach((header) => {
+    publicHeaders.forEach((header) => {
       const td = document.createElement("td");
       td.textContent = person[header] || "N/A";
       tableRow.appendChild(td);
@@ -19,7 +26,7 @@ export const fillTable = (headers, data, tableHead, tableBody) => {
   });
 };
 
-export const cleanTable = (tableHead, tableBody) => {
+export const clearTable = (tableHead, tableBody) => {
   tableHead.innerHTML = "";
   tableBody.innerHTML = "";
 };
@@ -33,4 +40,11 @@ export const getHeadersFromArray = (data) => {
     Object.keys(obj).forEach((key) => acc.add(key));
     return acc;
   }, new Set());
+};
+
+const hiddenValues = (headers, hiddenKeys) => {
+  const newHeaders = Array.from(headers).filter(
+    (header) => !hiddenKeys.includes(header)
+  );
+  return newHeaders;
 };

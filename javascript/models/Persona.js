@@ -4,7 +4,7 @@ export class Persona {
   apellido;
   edad;
 
-  constructor(id, nombre, apellido, edad) {
+  constructor({ id, nombre, apellido, edad }) {
     if (new.target === Persona) {
       throw new Error("This class is abstract");
     }

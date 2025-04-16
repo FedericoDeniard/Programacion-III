@@ -1,8 +1,8 @@
 import { Persona } from "./Persona.js";
 
 export class Futbolista extends Persona {
-  constructor(id, nombre, apelllido, edad, equipo, posicion, cantidadGoles) {
-    super(id, nombre, apelllido, edad);
+  constructor({ id, nombre, apellido, edad, equipo, posicion, cantidadGoles }) {
+    super({ id, nombre, apellido, edad });
     this.#validateFutbolista(equipo, posicion, cantidadGoles);
     this.equipo = equipo;
     this.posicion = posicion;
