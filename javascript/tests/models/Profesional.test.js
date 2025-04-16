@@ -39,4 +39,16 @@ describe("Profesional", () => {
       () => new Profesional(1, 2, "Pérez", 30, "Programación", "UTN", 2020)
     ).toThrow("Name and last name must be strings");
   });
+
+  test("Age is not a number", () => {
+    expect(
+      () => new Profesional(1, "John", "Doe", "30", "Programación", "UTN", 2020)
+    ).toThrow("Age must be a number");
+  });
+
+  test("Age must be greater than 15", () => {
+    expect(
+      () => new Profesional(1, "John", "Doe", 14, "Programación", "UTN", 2020)
+    ).toThrow("Age must be greater than 15");
+  });
 });
