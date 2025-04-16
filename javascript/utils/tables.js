@@ -19,7 +19,7 @@ export const fillTable = (headers, data, tableHead, tableBody) => {
   });
 };
 
-export const getHeaders = (data) => {
+export const getHeadersFromArray = (data) => {
   return data.reduce((acc, obj) => {
     Object.keys(obj).forEach((key) => acc.add(key));
     return acc;

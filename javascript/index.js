@@ -2,7 +2,7 @@ import { Futbolista } from "./models/Futbolista.js";
 import { Persona } from "./models/Persona.js";
 import { Profesional } from "./models/Profesional.js";
 import peopleList from "./constants/index.js";
-import { fillTable, getHeaders } from "./utils/tables.js";
+import { fillTable, getHeadersFromArray } from "./utils/tables.js";
 import { createModal } from "./utils/modals.js";
 
 // 2)Dada la siguiente cadena de caracteres, generar un Array de objetos de la jerarquía del punto 1.
@@ -105,7 +105,7 @@ type.addEventListener("change", (event) => {
 
 // Create table from data
 
-const headers = getHeaders(peopleList);
+const headers = getHeadersFromArray(peopleList);
 
 const tableHead = document.getElementById("table-head");
 const tableBody = document.getElementById("table-body");
