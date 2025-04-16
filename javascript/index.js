@@ -50,11 +50,18 @@ const createPeople = () => {
 
 const people = createPeople();
 
+const abmForm = document.getElementsByClassName("abm-form")[0];
 const type = document.getElementById("type");
 const futbolistasFields = document.querySelectorAll(".futbolista-field");
 const profesionalFields = document.querySelectorAll(".profesional-field");
 
-const abmForm = document.getElementsByClassName("abm-form")[0];
+const idInput = document.getElementById("id");
+const updateIdValue = () => {
+  console.log(peopleList);
+  const newValue = peopleList[peopleList.length - 1].id + 1;
+  idInput.value = newValue;
+  return newValue;
+};
 
 const { modal, closeButton } = createModal(abmForm);
 
@@ -90,6 +97,7 @@ closeButton.addEventListener("click", () => {
 
 const openDialogButton = document.getElementById("open-form");
 openDialogButton.addEventListener("click", () => {
+  updateIdValue();
   modal.showModal();
 });
 
