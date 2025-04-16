@@ -2,7 +2,7 @@ import { Futbolista } from "./models/Futbolista.js";
 import { Persona } from "./models/Persona.js";
 import { Profesional } from "./models/Profesional.js";
 import peopleList from "./constants/index.js";
-import { fillTable, getHeadersFromArray } from "./utils/tables.js";
+import { cleanTable, fillTable, getHeadersFromArray } from "./utils/tables.js";
 import { createModal } from "./utils/modals.js";
 import { getFormValues } from "./utils/forms.js";
 
@@ -50,7 +50,31 @@ const createPeople = () => {
 };
 
 const people = createPeople();
-console.log(people);
+
+// Filter people
+const inputFilter = document.getElementById("personas");
+let filteredPeople = [...people];
+
+const classMap = {
+  Futbolista,
+  Profesional,
+  Persona,
+};
+
+inputFilter.addEventListener("change", () => {
+  const value = inputFilter.value;
+  filteredPeople = [...people];
+  filteredPeople = filteredPeople.filter(
+    (person) => person instanceof classMap[value]
+  );
+  cleanTable(tableHead, tableBody);
+  fillTable(
+    getHeadersFromArray(filteredPeople),
+    filteredPeople,
+    tableHead,
+    tableBody
+  );
+});
 
 const abmForm = document.getElementsByClassName("abm-form")[0];
 const type = document.getElementById("type");
@@ -92,7 +116,6 @@ const resetFutbolistaFields = () => {
 closeButton.addEventListener("click", () => {
   abmForm.reset();
   type.value = "";
-  console.log("reset");
   resetFutbolistaFields();
   resetProfesionalFields();
 });
@@ -135,12 +158,11 @@ const headers = getHeadersFromArray(people);
 const tableHead = document.getElementById("table-head");
 const tableBody = document.getElementById("table-body");
 
-fillTable(headers, people, tableHead, tableBody);
+fillTable(headers, filteredPeople, tableHead, tableBody);
 
 // Form Validation
 
 abmForm.addEventListener("submit", (event) => {
   event.preventDefault();
   getFormValues(abmForm);
-  console.log(abmForm);
 });

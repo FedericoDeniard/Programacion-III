@@ -12,11 +12,16 @@ export const fillTable = (headers, data, tableHead, tableBody) => {
     const tableRow = document.createElement("tr");
     headers.forEach((header) => {
       const td = document.createElement("td");
-      td.textContent = person[header];
+      td.textContent = person[header] || "N/A";
       tableRow.appendChild(td);
     });
     tableBody.appendChild(tableRow);
   });
+};
+
+export const cleanTable = (tableHead, tableBody) => {
+  tableHead.innerHTML = "";
+  tableBody.innerHTML = "";
 };
 
 export const getHeadersFromArray = (data) => {
