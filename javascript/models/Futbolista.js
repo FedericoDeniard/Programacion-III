@@ -33,4 +33,16 @@ export class Futbolista extends Persona {
   toString() {
     return `${this.id}: ${this.nombre} ${this.apellido} (${this.edad} yo) ${this.equipo} ${this.posicion} ${this.cantidadGoles}`;
   }
+
+  static getProperties() {
+    return [
+      "id",
+      "nombre",
+      "apellido",
+      "edad",
+      "equipo",
+      "posicion",
+      "cantidadGoles",
+    ];
+  }
 }

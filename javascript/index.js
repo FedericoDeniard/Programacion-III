@@ -165,10 +165,10 @@ fillTable(headers, filteredPeople, tableHead, tableBody, checkedValues);
 abmForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const data = getFormValues(abmForm);
-  const cleanedData = cleanData(data);
-
-  const person = new classMap[type.value](...Object.values(cleanedData));
+  const cleanedData = cleanData(data, classMap[type.value].getProperties());
+  const person = new classMap[type.value](cleanedData);
   people.push(person);
+  filteredPeople.push(person);
   clearTable(tableHead, tableBody);
   fillTable(
     getHeadersFromArray(filteredPeople),

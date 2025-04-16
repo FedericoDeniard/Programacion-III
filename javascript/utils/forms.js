@@ -19,8 +19,9 @@ export const getFormValues = (form) => {
   return data;
 };
 
-export const cleanData = (object) => {
+export const cleanData = (data, objectType) => {
+  const allowedKeys = objectType;
   return Object.fromEntries(
-    Object.entries(object).filter(([key, value]) => value !== "")
+    Object.entries(data).filter(([key]) => allowedKeys.includes(key))
   );
 };

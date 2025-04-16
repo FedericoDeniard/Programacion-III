@@ -27,4 +27,16 @@ export class Profesional extends Persona {
   toString() {
     return `${this.id}: ${this.nombre} ${this.apellido} (${this.edad} yo) ${this.titulo} ${this.facultad} ${this.añoGraduacion}`;
   }
+
+  static getProperties() {
+    return [
+      "id",
+      "nombre",
+      "apellido",
+      "edad",
+      "titulo",
+      "facultad",
+      "añoGraduacion",
+    ];
+  }
 }
