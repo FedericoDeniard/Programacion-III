@@ -14,206 +14,211 @@
   </head>
 
   <body>
-    <div class="form-container">
-      <!-- Formulario ABM -->
-      <form class="abm-form form">
-        <h4>Formulario ABM</h4>
-        <label>
-          <span>ID:</span>
-          <input
-            type="number"
-            name="id"
-            id="id"
-            required
-            min="1"
-            placeholder="Ingrese su ID"
-          />
-        </label>
-        <label>
-          <span>Nombre:</span>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            required
-            placeholder="Ingrese su Nombre"
-          />
-        </label>
-        <label>
-          <span>Apellido:</span>
-          <input
-            type="text"
-            name="lastName"
-            id="lastName"
-            required
-            placeholder="Ingrese su Apellido"
-          />
-        </label>
-        <label>
-          <span>Edad:</span>
-          <input
-            type="number"
-            name="age"
-            id="age"
-            min="15"
-            required
-            placeholder="Ingrese su Edad"
-          />
-        </label>
-        <label>
-          <span>Tipo:</span>
-          <select name="type" id="type" required>
-            <option value="ninguno" disabled selected>
-              Seleccione un Tipo
-            </option>
-            <option value="futbolista">Futbolista</option>
-            <option value="profesional">Profesional</option>
-          </select>
-        </label>
-        <label class="futbolista-field">
-          <span>Equipo:</span>
-          <input
-            type="text"
-            name="team"
-            id="team"
-            placeholder="Ingrese su Equipo"
-          />
-        </label>
-        <label class="futbolista-field">
-          <span>Posicion:</span>
-          <input
-            type="text"
-            name="position"
-            id="position"
-            placeholder="Ingrese su Posicion"
-          />
-        </label>
-        <label class="futbolista-field">
-          <span>Cantidad de goles:</span>
-          <input
-            type="number"
-            name="cantGoles"
-            id="cantGoles"
-            min="0"
-            placeholder="Ingrese la cantidad de goles"
-          />
-        </label>
-        <label class="profesional-field">
-          <span>Titulo:</span>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            placeholder="Ingrese su Titulo"
-          />
-        </label>
-        <label class="profesional-field">
-          <span>Facultad:</span>
-          <input
-            type="text"
-            name="faculty"
-            id="faculty"
-            placeholder="Ingrese su Facultad"
-          />
-        </label>
-        <label class="profesional-field">
-          <span>Año de Graduacion:</span>
-          <input
-            type="number"
-            name="gradYear"
-            id="gradYear"
-            min="1951"
-            placeholder="Ingrese su Año de Graduacion"
-          />
-        </label>
-        <input type="submit" value="Agregar" class="submit-button" />
-      </form>
-
-      <!-- Formulario Datos -->
-      <form class="data-form form">
-        <h4>Formulario Datos</h4>
-        <label>
-          <span>Filtrar por:</span>
-          <select name="personas" id="personas">
-            <option value="persona" selected>Todos</option>
-            <option value="futbolista">Futbolista</option>
-            <option value="profesional">Profesional</option>
-          </select>
-        </label>
-        <label>
-          <span>Edad promedio: </span>
-        </label>
-        <div>
-          <span>Mostrar columnas:</span>
-          <div class="row">
-            <div>
-              <label for="filter-id">ID</label>
-              <input type="checkbox" name="filter-id" id="filter-id" />
-            </div>
-            <div>
-              <label for="filter-name">Nombre</label>
-              <input type="checkbox" name="filter-name" id="filter-name" />
-            </div>
-            <div>
-              <label for="filter-lastName">Apellido</label>
-              <input
-                type="checkbox"
-                name="filter-lastName"
-                id="filter-lastName"
-              />
-            </div>
-            <div>
-              <label for="filter-age">Edad</label>
-              <input type="checkbox" name="filter-age" id="filter-age" />
-            </div>
-            <div>
-              <label for="filter-type">Tipo</label>
-              <input type="checkbox" name="filter-type" id="filter-type" />
-            </div>
-            <div>
-              <label for="filter-team">Equipo</label>
-              <input type="checkbox" name="filter-team" id="filter-team" />
-            </div>
-            <div>
-              <label for="filter-position">Posicion</label>
-              <input
-                type="checkbox"
-                name="filter-position"
-                id="filter-position"
-              />
-            </div>
-            <div>
-              <label for="filter-cantGoles">Goles</label>
-              <input
-                type="checkbox"
-                name="filter-cantGoles"
-                id="filter-cantGoles"
-              />
-            </div>
-            <div>
-              <label for="filter-title">Titulo</label>
-              <input type="checkbox" name="filter-title" id="filter-title" />
-            </div>
-            <div>
-              <label for="filter-faculty">Facultad</label>
-              <input
-                type="checkbox"
-                name="filter-faculty"
-                id="filter-faculty"
-              />
-            </div>
-            <div>
-              <label for="filter-gradYear">Graduación</label>
-              <input
-                type="checkbox"
-                name="filter-gradYear"
-                id="filter-gradYear"
-              />
+    <!-- Formulario ABM -->
+    <form class="abm-form form">
+      <h4>Formulario ABM</h4>
+      <label>
+        <span>ID:</span>
+        <input
+          type="number"
+          name="id"
+          id="id"
+          required
+          min="1"
+          placeholder="Ingrese su ID"
+        />
+      </label>
+      <label>
+        <span>Nombre:</span>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          required
+          placeholder="Ingrese su Nombre"
+        />
+      </label>
+      <label>
+        <span>Apellido:</span>
+        <input
+          type="text"
+          name="lastName"
+          id="lastName"
+          required
+          placeholder="Ingrese su Apellido"
+        />
+      </label>
+      <label>
+        <span>Edad:</span>
+        <input
+          type="number"
+          name="age"
+          id="age"
+          min="15"
+          required
+          placeholder="Ingrese su Edad"
+        />
+      </label>
+      <label>
+        <span>Tipo:</span>
+        <select name="type" id="type" required>
+          <option value="" hidden selected>Seleccione un Tipo</option>
+          <option value="futbolista">Futbolista</option>
+          <option value="profesional">Profesional</option>
+        </select>
+      </label>
+      <label class="futbolista-field">
+        <span>Equipo:</span>
+        <input
+          type="text"
+          name="team"
+          id="team"
+          placeholder="Ingrese su Equipo"
+        />
+      </label>
+      <label class="futbolista-field">
+        <span>Posicion:</span>
+        <input
+          type="text"
+          name="position"
+          id="position"
+          placeholder="Ingrese su Posicion"
+        />
+      </label>
+      <label class="futbolista-field">
+        <span>Cantidad de goles:</span>
+        <input
+          type="number"
+          name="cantGoles"
+          id="cantGoles"
+          min="0"
+          placeholder="Ingrese la cantidad de goles"
+        />
+      </label>
+      <label class="profesional-field">
+        <span>Titulo:</span>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          placeholder="Ingrese su Titulo"
+        />
+      </label>
+      <label class="profesional-field">
+        <span>Facultad:</span>
+        <input
+          type="text"
+          name="faculty"
+          id="faculty"
+          placeholder="Ingrese su Facultad"
+        />
+      </label>
+      <label class="profesional-field">
+        <span>Año de Graduacion:</span>
+        <input
+          type="number"
+          name="gradYear"
+          id="gradYear"
+          min="1951"
+          placeholder="Ingrese su Año de Graduacion"
+        />
+      </label>
+      <input
+        type="submit"
+        value="Agregar"
+        class="submit-button"
+        id="abm-form__add"
+      />
+    </form>
+    <div class="container">
+      <div class="form-container">
+        <!-- Formulario Datos -->
+        <form class="data-form form --w100">
+          <h4>Formulario Datos</h4>
+          <label>
+            <span>Filtrar por:</span>
+            <select name="personas" id="personas">
+              <option value="persona" selected>Todos</option>
+              <option value="futbolista">Futbolista</option>
+              <option value="profesional">Profesional</option>
+            </select>
+          </label>
+          <label>
+            <span>Edad promedio: </span>
+          </label>
+          <div>
+            <span>Mostrar columnas:</span>
+            <div class="row">
+              <div>
+                <label for="filter-id">ID</label>
+                <input type="checkbox" name="filter-id" id="filter-id" />
+              </div>
+              <div>
+                <label for="filter-name">Nombre</label>
+                <input type="checkbox" name="filter-name" id="filter-name" />
+              </div>
+              <div>
+                <label for="filter-lastName">Apellido</label>
+                <input
+                  type="checkbox"
+                  name="filter-lastName"
+                  id="filter-lastName"
+                />
+              </div>
+              <div>
+                <label for="filter-age">Edad</label>
+                <input type="checkbox" name="filter-age" id="filter-age" />
+              </div>
+              <div>
+                <label for="filter-type">Tipo</label>
+                <input type="checkbox" name="filter-type" id="filter-type" />
+              </div>
+              <div>
+                <label for="filter-team">Equipo</label>
+                <input type="checkbox" name="filter-team" id="filter-team" />
+              </div>
+              <div>
+                <label for="filter-position">Posicion</label>
+                <input
+                  type="checkbox"
+                  name="filter-position"
+                  id="filter-position"
+                />
+              </div>
+              <div>
+                <label for="filter-cantGoles">Goles</label>
+                <input
+                  type="checkbox"
+                  name="filter-cantGoles"
+                  id="filter-cantGoles"
+                />
+              </div>
+              <div>
+                <label for="filter-title">Titulo</label>
+                <input type="checkbox" name="filter-title" id="filter-title" />
+              </div>
+              <div>
+                <label for="filter-faculty">Facultad</label>
+                <input
+                  type="checkbox"
+                  name="filter-faculty"
+                  id="filter-faculty"
+                />
+              </div>
+              <div>
+                <label for="filter-gradYear">Graduación</label>
+                <input
+                  type="checkbox"
+                  name="filter-gradYear"
+                  id="filter-gradYear"
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
+
     <!-- Tabla de Datos -->
     <div class="table-container">
       <table class="table">
