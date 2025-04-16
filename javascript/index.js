@@ -4,6 +4,7 @@ import { Profesional } from "./models/Profesional.js";
 import peopleList from "./constants/index.js";
 import { fillTable, getHeadersFromArray } from "./utils/tables.js";
 import { createModal } from "./utils/modals.js";
+import { getFormValues } from "./utils/forms.js";
 
 // 2)Dada la siguiente cadena de caracteres, generar un Array de objetos de la jerarquía del punto 1.
 const createPeople = () => {
@@ -136,11 +137,6 @@ const tableBody = document.getElementById("table-body");
 fillTable(headers, people, tableHead, tableBody);
 
 // Form Validation
-const getFormValues = (form) => {
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
-  console.log(data);
-};
 
 abmForm.addEventListener("submit", (event) => {
   event.preventDefault();
