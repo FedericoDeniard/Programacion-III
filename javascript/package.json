@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "vitest "
+    "test": "vitest --reporter=verbose"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@vitest/ui": "^3.1.1",
     "vitest": "^3.1.1"
   }
 }
