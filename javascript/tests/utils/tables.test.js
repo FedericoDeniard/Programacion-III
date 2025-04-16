@@ -73,13 +73,26 @@ describe("GetHeaders", () => {
     );
   });
 
-  test("should return the headers of an empty array", () => {
+  test("should throw an error when attempting to get headers from an empty array", () => {
     const emptyArray = [];
-    const emptyArrayHeaders = getHeadersFromArray(emptyArray);
-    expect(emptyArrayHeaders).toEqual(new Set());
+    expect(() => getHeadersFromArray(emptyArray)).toThrow(
+      "Input cannot be empty"
+    );
   });
 
   test("should fail when attempting to get headers from a non-array input", () => {
-    expect(() => getHeadersFromArray(null)).toThrowError();
+    expect(() => getHeadersFromArray(null)).toThrow("Input must be an array");
+  });
+
+  test("should fail when attempting to get headers from an array of non-objects", () => {
+    expect(() => getHeadersFromArray([1, 2, 3])).toThrow(
+      "Input at index 0 is not an object"
+    );
+  });
+
+  test("should fail when not all the elements of the array are objects", () => {
+    expect(() => getHeadersFromArray([futbolista, 2, profesional])).toThrow(
+      "Input at index 1 is not an object"
+    );
   });
 });
