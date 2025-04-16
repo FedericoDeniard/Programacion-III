@@ -50,6 +50,7 @@ const createPeople = () => {
 };
 
 const people = createPeople();
+console.log(people);
 
 const abmForm = document.getElementsByClassName("abm-form")[0];
 const type = document.getElementById("type");
@@ -58,8 +59,8 @@ const profesionalFields = document.querySelectorAll(".profesional-field");
 
 const idInput = document.getElementById("id");
 const updateIdValue = () => {
-  console.log(peopleList);
-  const newValue = peopleList[peopleList.length - 1].id + 1;
+  console.log(people);
+  const newValue = people[people.length - 1].id + 1;
   idInput.value = newValue;
   return newValue;
 };
@@ -129,7 +130,7 @@ type.addEventListener("change", (event) => {
 
 // Create table from data
 
-const headers = getHeadersFromArray(peopleList);
+const headers = getHeadersFromArray(people);
 
 const tableHead = document.getElementById("table-head");
 const tableBody = document.getElementById("table-body");
