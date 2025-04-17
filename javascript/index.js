@@ -73,6 +73,8 @@ inputFilter.addEventListener("change", () => {
 });
 
 const abmForm = document.getElementsByClassName("abm-form")[0];
+const gradYear = document.getElementById("gradYear");
+gradYear.max = new Date().getFullYear();
 const type = document.getElementById("type");
 const dataForm = document.getElementsByClassName("data-form")[0];
 const checkBoxs = dataForm.querySelectorAll("input[type=checkbox]");
@@ -165,19 +167,25 @@ fillTable(headers, filteredPeople, tableHead, tableBody, checkedValues);
 abmForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const data = getFormValues(abmForm);
-  const cleanedData = cleanData(data, classMap[type.value].getProperties());
-  const person = new classMap[type.value](cleanedData);
-  people.push(person);
-  filteredPeople.push(person);
-  clearTable(tableHead, tableBody);
-  fillTable(
-    getHeadersFromArray(filteredPeople),
-    filteredPeople,
-    tableHead,
-    tableBody,
-    checkedValues
-  );
-  modal.close();
+  try {
+    const cleanedData = cleanData(data, classMap[type.value].getProperties());
+    const person = new classMap[type.value](cleanedData);
+    people.push(person);
+    filteredPeople.push(person);
+    clearTable(tableHead, tableBody);
+    fillTable(
+      getHeadersFromArray(filteredPeople),
+      filteredPeople,
+      tableHead,
+      tableBody,
+      checkedValues
+    );
+    modal.close();
+  } catch (e) {
+    console.log(abmForm);
+  } finally {
+    abmForm.reset();
+  }
 });
 
 // Filter table
