@@ -57,8 +57,7 @@ const getDeleteButtons = () => {
   people.forEach((person) => {
     const deleteButton = document.getElementById(`delete-${person.id}`);
     deleteButton.addEventListener("click", () => {
-      const index = people.indexOf(person);
-      people.splice(index, 1);
+      deletePeople(person.id);
       clearTable(tableHead, tableBody);
       fillTable(
         getHeadersFromArray(people),
@@ -71,6 +70,13 @@ const getDeleteButtons = () => {
       getDeleteButtons();
     });
   });
+};
+
+const deletePeople = (id) => {
+  const person = people.find((person) => person.id === id);
+  if (!person) throw new Error("Person not found");
+  const index = people.indexOf(person);
+  people.splice(index, 1);
 };
 
 // Filter people
