@@ -65,7 +65,8 @@ const getDeleteButtons = () => {
         people,
         tableHead,
         tableBody,
-        checkedValues
+        checkedValues,
+        true
       );
       getDeleteButtons();
     });
