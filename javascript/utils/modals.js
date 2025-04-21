@@ -9,7 +9,7 @@ export const createModal = (child) => {
   const closeButton = document.createElement("input");
   closeButton.type = "button";
   closeButton.value = "Close";
-  closeButton.classList.add("submit-button", "--red");
+  closeButton.classList.add("button", "--red");
   child.appendChild(closeButton);
 
   closeButton.addEventListener("click", () => {

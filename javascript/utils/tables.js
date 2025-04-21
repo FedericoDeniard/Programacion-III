@@ -24,16 +24,26 @@ export const fillTable = (
       tableRow.appendChild(td);
     });
     if (canEdit) {
+      // Delete
       const td = document.createElement("td");
       const deleteButton = document.createElement("button");
       deleteButton.id = `delete-${person.id}`;
       deleteButton.textContent = "Eliminar";
-      deleteButton.classList.add("submit-button", "--red");
+      deleteButton.classList.add("button", "--red");
       td.appendChild(deleteButton);
       tableRow.appendChild(td);
+
+      // Edit
+      const editTD = document.createElement("td");
+      const editButton = document.createElement("button");
+      editButton.id = `edit-${person.id}`;
+      editButton.textContent = "Editar";
+      editButton.value = person.id;
+      editButton.classList.add("button", "--yellow");
+      editTD.appendChild(editButton);
+      tableRow.appendChild(editTD);
     }
     tableBody.appendChild(tableRow);
-    // Delete
   });
 };
 
