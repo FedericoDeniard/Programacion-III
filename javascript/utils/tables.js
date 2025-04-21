@@ -26,6 +26,7 @@ export const fillTable = (
     const deleteButton = document.createElement("button");
     deleteButton.id = `delete-${person.id}`;
     deleteButton.textContent = "Eliminar";
+    deleteButton.classList.add("submit-button", "--red");
 
     td.appendChild(deleteButton);
     tableRow.appendChild(td);
