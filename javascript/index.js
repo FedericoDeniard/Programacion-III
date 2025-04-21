@@ -106,6 +106,10 @@ const profesionalFields = document.querySelectorAll(".profesional-field");
 
 const idInput = document.getElementById("id");
 const updateIdValue = () => {
+  if (people.length === 0) {
+    idInput.value = 1;
+    return 1;
+  }
   const newValue = people[people.length - 1].id + 1;
   idInput.value = newValue;
   return newValue;
@@ -181,6 +185,7 @@ const tableHead = document.getElementById("table-head");
 const tableBody = document.getElementById("table-body");
 
 fillTable(headers, filteredPeople, tableHead, tableBody, checkedValues);
+getDeleteButtons();
 
 // Form Validation
 
