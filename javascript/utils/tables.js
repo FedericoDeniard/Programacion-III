@@ -22,6 +22,8 @@ export const fillTable = (
       td.textContent = person[header] || "N/A";
       tableRow.appendChild(td);
     });
+
+    // Delete
     const td = document.createElement("td");
     const deleteButton = document.createElement("button");
     deleteButton.id = `delete-${person.id}`;
