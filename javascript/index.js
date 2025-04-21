@@ -184,7 +184,7 @@ const headers = getHeadersFromArray(people);
 const tableHead = document.getElementById("table-head");
 const tableBody = document.getElementById("table-body");
 
-fillTable(headers, filteredPeople, tableHead, tableBody, checkedValues);
+fillTable(headers, filteredPeople, tableHead, tableBody, checkedValues, true);
 getDeleteButtons();
 
 // Form Validation

@@ -3,7 +3,8 @@ export const fillTable = (
   data,
   tableHead,
   tableBody,
-  hiddenKeys = []
+  hiddenKeys = [],
+  canEdit = false
 ) => {
   const tableHeadRow = document.createElement("tr");
   const publicHeaders = hiddenValues(headers, hiddenKeys);
@@ -22,17 +23,17 @@ export const fillTable = (
       td.textContent = person[header] || "N/A";
       tableRow.appendChild(td);
     });
-
-    // Delete
-    const td = document.createElement("td");
-    const deleteButton = document.createElement("button");
-    deleteButton.id = `delete-${person.id}`;
-    deleteButton.textContent = "Eliminar";
-    deleteButton.classList.add("submit-button", "--red");
-
-    td.appendChild(deleteButton);
-    tableRow.appendChild(td);
+    if (canEdit) {
+      const td = document.createElement("td");
+      const deleteButton = document.createElement("button");
+      deleteButton.id = `delete-${person.id}`;
+      deleteButton.textContent = "Eliminar";
+      deleteButton.classList.add("submit-button", "--red");
+      td.appendChild(deleteButton);
+      tableRow.appendChild(td);
+    }
     tableBody.appendChild(tableRow);
+    // Delete
   });
 };
 
