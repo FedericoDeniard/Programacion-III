@@ -204,7 +204,8 @@ abmForm.addEventListener("submit", (event) => {
       filteredPeople,
       tableHead,
       tableBody,
-      checkedValues
+      checkedValues,
+      true
     );
     modal.close();
   } catch (e) {
