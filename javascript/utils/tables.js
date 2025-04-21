@@ -22,6 +22,13 @@ export const fillTable = (
       td.textContent = person[header] || "N/A";
       tableRow.appendChild(td);
     });
+    const td = document.createElement("td");
+    const deleteButton = document.createElement("button");
+    deleteButton.id = `delete-${person.id}`;
+    deleteButton.textContent = "Eliminar";
+
+    td.appendChild(deleteButton);
+    tableRow.appendChild(td);
     tableBody.appendChild(tableRow);
   });
 };

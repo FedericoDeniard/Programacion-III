@@ -52,6 +52,26 @@ const createPeople = () => {
 
 const people = createPeople();
 
+// Delete person
+const getDeleteButtons = () => {
+  people.forEach((person) => {
+    const deleteButton = document.getElementById(`delete-${person.id}`);
+    deleteButton.addEventListener("click", () => {
+      const index = people.indexOf(person);
+      people.splice(index, 1);
+      clearTable(tableHead, tableBody);
+      fillTable(
+        getHeadersFromArray(people),
+        people,
+        tableHead,
+        tableBody,
+        checkedValues
+      );
+      getDeleteButtons();
+    });
+  });
+};
+
 // Filter people
 const inputFilter = document.getElementById("personas");
 let filteredPeople = [...people];
