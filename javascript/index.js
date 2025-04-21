@@ -4,7 +4,7 @@ import { Profesional } from "./models/Profesional.js";
 import peopleList from "./constants/index.js";
 import { clearTable, fillTable, getHeadersFromArray } from "./utils/tables.js";
 import { createModal } from "./utils/modals.js";
-import { cleanData, getFormValues } from "./utils/forms.js";
+import { cleanData, fillFormValues, getFormValues } from "./utils/forms.js";
 import classMap from "./constants/classMap.js";
 
 // 2)Dada la siguiente cadena de caracteres, generar un Array de objetos de la jerarquía del punto 1.
@@ -79,6 +79,22 @@ const deletePeople = (id) => {
   people.splice(index, 1);
 };
 
+// Update person
+const getUpdateButtons = () => {
+  people.forEach((person) => {
+    const updateButton = document.getElementById(`edit-${person.id}`);
+    updateButton.addEventListener("click", () => {
+      updateIdValue(person.id);
+      showClassInputs({
+        value: person.hasOwnProperty("equipo") ? "Futbolista" : "Profesional",
+      });
+      fillFormValues(person, abmForm);
+      modal.showModal();
+      getUpdateButtons();
+    });
+  });
+};
+
 // Filter people
 const inputFilter = document.getElementById("personas");
 let filteredPeople = [...people];
@@ -112,7 +128,11 @@ const futbolistasFields = document.querySelectorAll(".futbolista-field");
 const profesionalFields = document.querySelectorAll(".profesional-field");
 
 const idInput = document.getElementById("id");
-const updateIdValue = () => {
+const updateIdValue = (id = undefined) => {
+  if (id) {
+    idInput.value = id;
+    return id;
+  }
   if (people.length === 0) {
     idInput.value = 1;
     return 1;
@@ -169,20 +189,24 @@ profesionalFields.forEach((profesionalField) => {
 type.addEventListener("change", (event) => {
   resetFutbolistaFields();
   resetProfesionalFields();
-  if (event.target.value === "Futbolista") {
+  showClassInputs(event.target);
+});
+
+const showClassInputs = (input) => {
+  if (input.value === "Futbolista") {
     futbolistasFields.forEach((futbolistaField) => {
       futbolistaField.style.display = "flex";
       const input = futbolistaField.querySelector("input, select");
       if (input) input.setAttribute("required", "");
     });
-  } else if (event.target.value === "Profesional") {
+  } else if (input.value === "Profesional") {
     profesionalFields.forEach((profesionalField) => {
       profesionalField.style.display = "flex";
       const input = profesionalField.querySelector("input, select");
       if (input) input.setAttribute("required", "");
     });
   }
-});
+};
 
 // Create table from data
 
@@ -193,6 +217,7 @@ const tableBody = document.getElementById("table-body");
 
 fillTable(headers, filteredPeople, tableHead, tableBody, checkedValues, true);
 getDeleteButtons();
+getUpdateButtons();
 
 // Form Validation
 
@@ -202,8 +227,14 @@ abmForm.addEventListener("submit", (event) => {
   try {
     const cleanedData = cleanData(data, classMap[type.value].getProperties());
     const person = new classMap[type.value](cleanedData);
-    people.push(person);
-    filteredPeople.push(person);
+    const peopleExists = people.findIndex((p) => p.id === person.id);
+    if (peopleExists !== -1) {
+      people[peopleExists] = person;
+      filteredPeople[peopleExists] = person;
+    } else {
+      people.push(person);
+      filteredPeople.push(person);
+    }
     clearTable(tableHead, tableBody);
     fillTable(
       getHeadersFromArray(filteredPeople),
@@ -213,6 +244,7 @@ abmForm.addEventListener("submit", (event) => {
       checkedValues,
       true
     );
+    getUpdateButtons();
     modal.close();
   } catch (e) {
     console.log(abmForm);
