@@ -143,7 +143,7 @@ const calculateAverageAge = (people) => {
   people.forEach((person) => {
     totalAge += person.edad;
   });
-  return Math.round(totalAge / people.length);
+  return Math.round(totalAge / people.length) || 0;
 };
 
 const changeInnerText = (element, newText) => {
