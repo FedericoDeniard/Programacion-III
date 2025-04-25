@@ -58,25 +58,35 @@ const getDeleteButtons = () => {
     const deleteButton = document.getElementById(`delete-${person.id}`);
     deleteButton.addEventListener("click", () => {
       deletePeople(person.id);
+      filteredPeople = [...people];
+      filterPeople();
       clearTable(tableHead, tableBody);
+      changeInnerText(
+        averageAgeInput,
+        `Edad promedio: ${calculateAverageAge(filteredPeople)}`
+      );
       fillTable(
-        getHeadersFromArray(people),
-        people,
+        getHeadersFromArray(filteredPeople),
+        filteredPeople,
         tableHead,
         tableBody,
         checkedValues,
         true
       );
+
       getDeleteButtons();
+      getUpdateButtons();
     });
   });
 };
 
 const deletePeople = (id) => {
+  console.log("deletePeople(): id", id);
   const person = people.find((person) => person.id === id);
   if (!person) throw new Error("Person not found");
   const index = people.indexOf(person);
   people.splice(index, 1);
+  console.log(people);
 };
 
 // Update person
@@ -100,20 +110,50 @@ const inputFilter = document.getElementById("personas");
 let filteredPeople = [...people];
 
 inputFilter.addEventListener("change", () => {
-  const value = inputFilter.value;
-  filteredPeople = [...people];
-  filteredPeople = filteredPeople.filter(
-    (person) => person instanceof classMap[value]
-  );
+  filterPeople();
   clearTable(tableHead, tableBody);
+  changeInnerText(
+    averageAgeInput,
+    `Edad promedio: ${calculateAverageAge(filteredPeople)}`
+  );
   fillTable(
     getHeadersFromArray(filteredPeople),
     filteredPeople,
     tableHead,
     tableBody,
-    checkedValues
+    checkedValues,
+    true
   );
+  getDeleteButtons();
+  getUpdateButtons();
 });
+
+const filterPeople = () => {
+  const value = inputFilter.value;
+  filteredPeople = [...people];
+  filteredPeople = filteredPeople.filter(
+    (person) => person instanceof classMap[value]
+  );
+};
+
+// Average Age
+const averageAgeInput = document.getElementById("avg-age");
+const calculateAverageAge = (people) => {
+  let totalAge = 0;
+  people.forEach((person) => {
+    totalAge += person.edad;
+  });
+  return Math.round(totalAge / people.length);
+};
+
+const changeInnerText = (element, newText) => {
+  element.innerText = newText;
+};
+
+changeInnerText(
+  averageAgeInput,
+  `Edad promedio: ${calculateAverageAge(filteredPeople)}`
+);
 
 const abmForm = document.getElementsByClassName("abm-form")[0];
 const gradYear = document.getElementById("gradYear");
@@ -236,6 +276,10 @@ abmForm.addEventListener("submit", (event) => {
       filteredPeople.push(person);
     }
     clearTable(tableHead, tableBody);
+    changeInnerText(
+      averageAgeInput,
+      `Edad promedio: ${calculateAverageAge(filteredPeople)}`
+    );
     fillTable(
       getHeadersFromArray(filteredPeople),
       filteredPeople,
@@ -244,6 +288,7 @@ abmForm.addEventListener("submit", (event) => {
       checkedValues,
       true
     );
+    getDeleteButtons();
     getUpdateButtons();
     modal.close();
   } catch (e) {
@@ -261,12 +306,20 @@ checkBoxs.forEach((b) => {
       .map((b) => b.value);
 
     clearTable(tableHead, tableBody);
+    changeInnerText(
+      averageAgeInput,
+      `Edad promedio: ${calculateAverageAge(filteredPeople)}`
+    );
+
     fillTable(
       getHeadersFromArray(filteredPeople),
       filteredPeople,
       tableHead,
       tableBody,
-      checkedValues
+      checkedValues,
+      true
     );
+    getDeleteButtons();
+    getUpdateButtons();
   });
 });
