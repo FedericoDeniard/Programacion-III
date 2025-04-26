@@ -8,50 +8,6 @@ import { cleanData, fillFormValues, getFormValues } from "./utils/forms.js";
 import classMap from "./constants/classMap.js";
 
 // 2)Dada la siguiente cadena de caracteres, generar un Array de objetos de la jerarquía del punto 1.
-const createPeople = () => {
-  const people = [];
-  for (const person of peopleList) {
-    try {
-      if (person.equipo) {
-        const futbolista = new Futbolista({
-          id: person.id,
-          nombre: person.nombre,
-          apellido: person.apellido,
-          edad: person.edad,
-          equipo: person.equipo,
-          posicion: person.posicion,
-          cantidadGoles: person.cantidadGoles,
-        });
-        people.push(futbolista);
-      } else if (person.titulo) {
-        const profesional = new Profesional({
-          id: person.id,
-          nombre: person.nombre,
-          apellido: person.apellido,
-          edad: person.edad,
-          titulo: person.titulo,
-          facultad: person.facultad,
-          añoGraduacion: person.añoGraduacion,
-        });
-        people.push(profesional);
-      } else {
-        const persona = new Persona({
-          id: person.id,
-          nombre: person.nombre,
-          apellido: person.apellido,
-          edad: person.edad,
-        });
-        people.push(persona);
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }
-  return people;
-};
-
-const people = createPeople();
-
 // Delete person
 const getDeleteButtons = () => {
   people.forEach((person) => {
