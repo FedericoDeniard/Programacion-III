@@ -1,4 +1,4 @@
-import { hiddenValues } from "../../utils/tables";
+import { getHeadersFromArray, hiddenValues } from "../../utils/tables";
 
 export class View {
   dataForm;
@@ -6,26 +6,19 @@ export class View {
   constructor() {
     this.dataForm = {
       form: this.$("data-form"),
-      filter: this.$("personas"),
-      averageText: this.$("avg-age"),
-      checkboxes: this.$("data-form").querySelectorAll("input[type=checkbox]"),
-      // {
-      //   id: this.$("filter-id"),
-      //   name: this.$("filter-name"),
-      //   lastName: this.$("filter-lastName"),
-      //   age: this.$("filter-age"),
-      //   team: this.$("filter-team"),
-      //   position: this.$("filter-position"),
-      //   cantGoles: this.$("filter-cantGoles"),
-      //   title: this.$("filter-title"),
-      //   faculty: this.$("filter-faculty"),
-      //   gradYear: this.$("filter-gradYear"),
-      // }
+
       tableContainer: {
         thead: this.$("table-head"),
         tbody: this.$("table-body"),
         tfoot: this.$("table-foot"),
+        deleteButtons: [],
+        editButtons: [],
       },
+    };
+    this.filters = {
+      profession: this.$("personas"),
+      averageText: this.$("avg-age"),
+      checkboxes: this.$("data-form").querySelectorAll("input[type=checkbox]"),
     };
   }
 
@@ -33,7 +26,8 @@ export class View {
     return document.getElementById(id);
   }
 
-  fillTable(headers, data, hiddenKeys = [], canEdit = false) {
+  fillTable(data, hiddenKeys = [], canEdit = false) {
+    const headers = getHeadersFromArray(data);
     let tableHead = this.dataForm.tableContainer.thead;
     let tableBody = this.dataForm.tableContainer.tbody;
     const tableHeadRow = document.createElement("tr");
@@ -45,6 +39,7 @@ export class View {
       tableHeadRow.appendChild(th);
     });
     tableHead.appendChild(tableHeadRow);
+    this.dataForm.tableContainer.deleteButtons = [];
 
     data.forEach((person) => {
       const tableRow = document.createElement("tr");
@@ -60,9 +55,12 @@ export class View {
         deleteButton.id = `delete-${person.id}`;
         deleteButton.textContent = "Eliminar";
         deleteButton.classList.add("button", "--red");
+        deleteButton.value = person.id;
+        this.dataForm.tableContainer.deleteButtons.push(deleteButton);
         td.appendChild(deleteButton);
         tableRow.appendChild(td);
 
+        this.dataForm.tableContainer.editButtons = [];
         // Edit
         const editTD = document.createElement("td");
         const editButton = document.createElement("button");

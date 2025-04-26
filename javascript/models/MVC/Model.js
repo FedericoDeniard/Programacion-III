@@ -1,5 +1,10 @@
 export class Model {
-  People;
-  FilteredPeople;
-  constructor() {}
+  people;
+  filteredPeople;
+  hiddenValues;
+  constructor() {
+    this.people = [];
+    this.filteredPeople = [];
+    this.hiddenValues = [];
+  }
 }

@@ -8,4 +8,4 @@ const MyModel = new Model();
 const MyView = new View();
 const MyController = new Controlller(MyView, MyModel, peopleList);
 
-MyView.fillTable(getHeadersFromArray(MyModel.People), MyModel.People, [], true);
+MyController.updateTable();

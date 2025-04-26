@@ -1,3 +1,4 @@
+import classMap from "../../constants/classMap";
 import { getHeadersFromArray } from "../../utils/tables";
 import { Futbolista } from "../Futbolista";
 import { Persona } from "../Persona";
@@ -9,8 +10,10 @@ export class Controlller {
   constructor(vista, modelo, initialData) {
     this.View = vista;
     this.Model = modelo;
-    this.Model.People = this.createPeople(initialData);
+    this.Model.people = this.createPeople(initialData);
+    this.Model.filteredPeople = this.Model.people;
     this.checkboxListener();
+    this.professionListener();
   }
 
   createPeople = (peopleList) => {
@@ -56,20 +59,65 @@ export class Controlller {
   };
 
   checkboxListener() {
-    let checkBoxes = this.View.dataForm.checkboxes;
+    const checkBoxes = this.View.filters.checkboxes;
     checkBoxes.forEach((checkbox) => {
       checkbox.addEventListener("change", () => {
         let hiddenValues = [...checkBoxes]
           .filter((b) => !b.checked)
           .map((b) => b.value);
         this.View.clearTable();
-        this.View.fillTable(
-          getHeadersFromArray(this.Model.People),
-          this.Model.People,
-          hiddenValues,
-          true
-        );
+        this.Model.hiddenValues = hiddenValues;
+        this.Model.updateTable();
       });
     });
+  }
+
+  professionListener() {
+    const professionInput = this.View.filters.profession;
+
+    professionInput.addEventListener("change", () => {
+      this.filterPeople();
+      this.updateTable();
+    });
+  }
+
+  filterPeople() {
+    const professionInput = this.View.filters.profession;
+    const profession = professionInput.value;
+    let filteredPeople = [...this.Model.people];
+    this.Model.filteredPeople = filteredPeople;
+    filteredPeople = this.Model.people.filter(
+      (person) => person instanceof classMap[profession]
+    );
+    this.Model.filteredPeople = filteredPeople;
+  }
+
+  deleteButtonsListener() {
+    this.View.dataForm.tableContainer.deleteButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const id = Number(button.value);
+        this.deletePeople(id);
+        this.updateTable();
+      });
+    });
+  }
+
+  deletePeople(id) {
+    const person = this.Model.people.find((person) => person.id === id);
+    if (!person) throw new Error("Person not found");
+    const index = this.Model.people.indexOf(person);
+    this.Model.people.splice(index, 1);
+    this.Model.filteredPeople.splice(index, 1);
+  }
+
+  updateTable() {
+    this.View.clearTable();
+    this.filterPeople();
+    this.View.fillTable(
+      this.Model.filteredPeople,
+      this.Model.hiddenValues,
+      true
+    );
+    this.deleteButtonsListener();
   }
 }
