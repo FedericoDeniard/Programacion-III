@@ -67,7 +67,7 @@ export class Controlller {
           .map((b) => b.value);
         this.View.clearTable();
         this.Model.hiddenValues = hiddenValues;
-        this.Model.updateTable();
+        this.updateTable();
       });
     });
   }
