@@ -38,3 +38,7 @@
 .table tfoot tr td {
   padding-top: 25px;
 }
+
+.table tbody {
+  margin: auto;
+}

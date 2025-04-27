@@ -38,6 +38,7 @@ export class View {
   }
 
   fillTable(data, hiddenKeys = [], canEdit = false) {
+    this.clearTable();
     const headers = getHeadersFromArray(data);
     let tableHead = this.dataForm.tableContainer.thead;
     let tableBody = this.dataForm.tableContainer.tbody;
@@ -156,5 +157,15 @@ export class View {
       }
       el.value = data[el.name] || "";
     }
+  };
+
+  setTableLoader = () => {
+    let tableBody = this.dataForm.tableContainer.tbody;
+    let spinnerContainer = document.createElement("div");
+    spinnerContainer.classList.add("loader-container");
+    tableBody.appendChild(spinnerContainer);
+    let spinner = document.createElement("div");
+    spinner.classList.add("loader");
+    spinnerContainer.appendChild(spinner);
   };
 }

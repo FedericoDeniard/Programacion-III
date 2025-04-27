@@ -67,7 +67,6 @@ export class Controlller {
         let hiddenValues = [...checkBoxes]
           .filter((b) => !b.checked)
           .map((b) => b.value);
-        this.View.clearTable();
         this.Model.hiddenValues = hiddenValues;
         this.updateTable();
       });
@@ -130,8 +129,8 @@ export class Controlller {
   }
 
   updateTable() {
-    this.View.clearTable();
     this.Model.filterPeople(this.View.filters.profession.value);
+    this.View.setTableLoader();
     this.View.fillTable(
       this.Model.filteredPeople,
       this.Model.hiddenValues,
