@@ -49,4 +49,9 @@ export class Model {
     const newValue = this.people[this.people.length - 1].id + 1;
     return newValue;
   }
+
+  findPerson(id) {
+    const person = this.people.find((person) => person.id === id);
+    return person;
+  }
 }

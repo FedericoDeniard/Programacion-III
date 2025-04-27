@@ -115,6 +115,21 @@ export class Controlller {
     });
   }
 
+  editButtonsListener() {
+    this.View.dataForm.tableContainer.editButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const id = Number(button.value);
+        const person = this.Model.findPerson(id);
+        this.View.fillFormValues(person, this.View.formAbm.form);
+        this.View.showClassInputs();
+        this.View.updateNewId(id);
+        this.View.formAbm.modalObject.modal.showModal();
+        this.updateFieldsOnDialog();
+        this.submitFormListener();
+      });
+    });
+  }
+
   updateTable() {
     this.View.clearTable();
     this.Model.filterPeople(this.View.filters.profession.value);
@@ -124,6 +139,7 @@ export class Controlller {
       true
     );
     this.deleteButtonsListener();
+    this.editButtonsListener();
     this.updateAverageAge();
   }
 

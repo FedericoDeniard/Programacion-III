@@ -51,6 +51,7 @@ export class View {
     });
     tableHead.appendChild(tableHeadRow);
     this.dataForm.tableContainer.deleteButtons = [];
+    this.dataForm.tableContainer.editButtons = [];
 
     data.forEach((person) => {
       const tableRow = document.createElement("tr");
@@ -71,13 +72,13 @@ export class View {
         td.appendChild(deleteButton);
         tableRow.appendChild(td);
 
-        this.dataForm.tableContainer.editButtons = [];
         // Edit
         const editTD = document.createElement("td");
         const editButton = document.createElement("button");
         editButton.id = `edit-${person.id}`;
         editButton.textContent = "Editar";
         editButton.value = person.id;
+        this.dataForm.tableContainer.editButtons.push(editButton);
         editButton.classList.add("button", "--yellow");
         editTD.appendChild(editButton);
         tableRow.appendChild(editTD);
@@ -143,4 +144,17 @@ export class View {
       }
     });
   }
+
+  fillFormValues = (data, form) => {
+    const elements = form.elements;
+    for (let el of elements) {
+      if (!el.name) continue;
+
+      if (el.name === "type") {
+        el.value = data.hasOwnProperty("equipo") ? "Futbolista" : "Profesional";
+        continue;
+      }
+      el.value = data[el.name] || "";
+    }
+  };
 }
