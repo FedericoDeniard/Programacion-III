@@ -131,7 +131,5 @@ export class Controlller {
     const averageAge =
       Math.round(totalAge / this.Model.filteredPeople.length) || 0;
     averageAgeInput.innerText = `Edad promedio: ${averageAge}`;
-    console.log(averageAgeInput);
-    console.log(averageAge);
   }
 }
