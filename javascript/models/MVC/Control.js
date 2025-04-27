@@ -119,5 +119,19 @@ export class Controlller {
       true
     );
     this.deleteButtonsListener();
+    this.updateAverageAge();
+  }
+
+  updateAverageAge() {
+    const averageAgeInput = this.View.filters.averageText;
+    let totalAge = 0;
+    this.Model.filteredPeople.forEach((person) => {
+      totalAge += person.edad;
+    });
+    const averageAge =
+      Math.round(totalAge / this.Model.filteredPeople.length) || 0;
+    averageAgeInput.innerText = `Edad promedio: ${averageAge}`;
+    console.log(averageAgeInput);
+    console.log(averageAge);
   }
 }
