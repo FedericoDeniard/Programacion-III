@@ -1,5 +1,3 @@
-import classMap from "../constants/classMap";
-
 export const getFormValues = (form) => {
   const data = {};
   const elements = form.elements;

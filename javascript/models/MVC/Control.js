@@ -1,6 +1,5 @@
 import classMap from "../../constants/classMap";
 import { cleanData, getFormValues } from "../../utils/forms";
-import { getHeadersFromArray } from "../../utils/tables";
 import { Futbolista } from "../Futbolista";
 import { Persona } from "../Persona";
 import { Profesional } from "../Profesional";
