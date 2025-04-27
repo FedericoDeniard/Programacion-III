@@ -1,4 +1,5 @@
 import classMap from "../../constants/classMap";
+import { cleanData, getFormValues } from "../../utils/forms";
 import { getHeadersFromArray } from "../../utils/tables";
 import { Futbolista } from "../Futbolista";
 import { Persona } from "../Persona";
@@ -14,6 +15,8 @@ export class Controlller {
     this.Model.filteredPeople = this.Model.people;
     this.checkboxListener();
     this.professionListener();
+    this.openDialogListener();
+    this.closeDialogListener();
   }
 
   createPeople = (peopleList) => {
@@ -81,6 +84,27 @@ export class Controlller {
     });
   }
 
+  openDialogListener() {
+    this.View.dataForm.openDialogButton.addEventListener("click", () => {
+      this.View.formAbm.modalObject.modal.showModal();
+      this.View.updateNewId(this.Model.getIdValue());
+      this.View.showClassInputs();
+      this.updateFieldsOnDialog();
+      this.submitFormListener();
+    });
+  }
+
+  closeDialogListener() {
+    this.View.formAbm.modalObject.modal.addEventListener("close", () => {
+      this.View.formAbm.form.reset();
+    });
+  }
+
+  updateFieldsOnDialog() {
+    this.View.formAbm.type.addEventListener("change", () => {
+      this.View.showClassInputs();
+    });
+  }
   deleteButtonsListener() {
     this.View.dataForm.tableContainer.deleteButtons.forEach((button) => {
       button.addEventListener("click", () => {
@@ -104,13 +128,33 @@ export class Controlller {
   }
 
   updateAverageAge() {
-    const averageAgeInput = this.View.filters.averageText;
     let totalAge = 0;
     this.Model.filteredPeople.forEach((person) => {
       totalAge += person.edad;
     });
     const averageAge =
       Math.round(totalAge / this.Model.filteredPeople.length) || 0;
-    averageAgeInput.innerText = `Edad promedio: ${averageAge}`;
+    this.View.updateAverageAge(averageAge);
+  }
+
+  submitFormListener() {
+    this.View.formAbm.form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = getFormValues(this.View.formAbm.form);
+      try {
+        const cleanedData = cleanData(
+          data,
+          classMap[this.View.formAbm.type.value].getProperties()
+        );
+        const person = new classMap[this.View.formAbm.type.value](cleanedData);
+        this.Model.addPeople(person);
+        this.updateTable();
+        this.View.formAbm.modalObject.modal.close();
+      } catch (e) {
+        console.log(e);
+      } finally {
+        this.View.formAbm.form.reset();
+      }
+    });
   }
 }

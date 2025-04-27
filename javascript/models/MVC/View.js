@@ -1,8 +1,10 @@
+import { createModal } from "../../utils/modals";
 import { getHeadersFromArray, hiddenValues } from "../../utils/tables";
 
 export class View {
   dataForm;
-  FormAbm;
+  formAbm;
+  filters;
   constructor() {
     this.dataForm = {
       form: this.$("data-form"),
@@ -14,11 +16,20 @@ export class View {
         deleteButtons: [],
         editButtons: [],
       },
+      openDialogButton: this.$("open-form"),
     };
     this.filters = {
       profession: this.$("personas"),
       averageText: this.$("avg-age"),
       checkboxes: this.$("data-form").querySelectorAll("input[type=checkbox]"),
+    };
+    this.formAbm = {
+      form: this.$("abm-form"),
+      modalObject: createModal(this.$("abm-form")),
+      idInput: this.$("id"),
+      type: this.$("type"),
+      futbolistasFields: document.querySelectorAll(".futbolista-field"),
+      profesionalFields: document.querySelectorAll(".profesional-field"),
     };
   }
 
@@ -79,4 +90,57 @@ export class View {
     this.dataForm.tableContainer.thead.innerHTML = "";
     this.dataForm.tableContainer.tbody.innerHTML = "";
   };
+
+  updateAverageAge(newAverageAge) {
+    const averageAgeInput = this.filters.averageText;
+    averageAgeInput.innerText = `Edad promedio: ${newAverageAge}`;
+  }
+
+  updateNewId(newId) {
+    const idInput = this.formAbm.idInput;
+    idInput.value = newId;
+  }
+
+  showClassInputs() {
+    if (this.formAbm.type.value === "Futbolista") {
+      this.formAbm.futbolistasFields.forEach((futbolistaField) => {
+        futbolistaField.style.display = "flex";
+        const input = futbolistaField.querySelector("input, select");
+        if (input) this.formAbm.type.setAttribute("required", "");
+        this.resetProfesionalFields();
+      });
+    } else if (this.formAbm.type.value === "Profesional") {
+      this.formAbm.profesionalFields.forEach((profesionalField) => {
+        profesionalField.style.display = "flex";
+        const input = profesionalField.querySelector("input, select");
+        if (input) this.formAbm.type.setAttribute("required", "");
+        this.resetFutbolistaFields();
+      });
+    } else {
+      this.resetFutbolistaFields();
+      this.resetProfesionalFields();
+    }
+  }
+
+  resetFutbolistaFields() {
+    this.formAbm.futbolistasFields.forEach((futbolistaField) => {
+      futbolistaField.style.display = "none";
+      const input = futbolistaField.querySelector("input, select");
+      if (input) {
+        input.removeAttribute("required");
+        input.value = null;
+      }
+    });
+  }
+
+  resetProfesionalFields() {
+    this.formAbm.profesionalFields.forEach((profesionalField) => {
+      profesionalField.style.display = "none";
+      const input = profesionalField.querySelector("input, select");
+      if (input) {
+        input.removeAttribute("required");
+        input.value = null;
+      }
+    });
+  }
 }
