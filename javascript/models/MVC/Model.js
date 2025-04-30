@@ -1,4 +1,4 @@
-import classMap from "../../constants/classMap";
+import classMap from "../../constants/classMap.js";
 
 export class Model {
   people;

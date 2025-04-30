@@ -1,8 +1,8 @@
-import classMap from "../../constants/classMap";
-import { cleanData, getFormValues } from "../../utils/forms";
-import { Futbolista } from "../Futbolista";
-import { Persona } from "../Persona";
-import { Profesional } from "../Profesional";
+import classMap from "../../constants/classMap.js";
+import { cleanData, getFormValues } from "../../utils/forms.js";
+import { Futbolista } from "../Futbolista.js";
+import { Persona } from "../Persona.js";
+import { Profesional } from "../Profesional.js";
 
 export class Controlller {
   View;

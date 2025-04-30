@@ -1,5 +1,5 @@
-import { createModal } from "../../utils/modals";
-import { getHeadersFromArray, hiddenValues } from "../../utils/tables";
+import { createModal } from "../../utils/modals.js";
+import { getHeadersFromArray, hiddenValues } from "../../utils/tables.js";
 
 export class View {
   dataForm;
