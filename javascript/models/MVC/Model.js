@@ -58,10 +58,7 @@ export class Model {
     if (id) {
       return id;
     }
-    if (this.people.length === 0) {
-      return 1;
-    }
-    const newValue = this.people[this.people.length - 1].id + 1;
+    const newValue = "N/A";
     return newValue;
   }
 
