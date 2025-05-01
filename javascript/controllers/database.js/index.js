@@ -52,6 +52,24 @@ class DatabaseController {
     console.log("editado", person);
     return couldEdit;
   }
+
+  async addPeople(person) {
+    if (person.id) delete person.id;
+    const response = await fetch(this.url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(person),
+    });
+    if (response.status !== 200) {
+      throw new Error("Error al obtener los datos");
+    }
+    const id = await response.text();
+    const parsedId = await JSON.parse(id);
+
+    return parsedId.id;
+  }
 }
 
 const databaseController = new DatabaseController();

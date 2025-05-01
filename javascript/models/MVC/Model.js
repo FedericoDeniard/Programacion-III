@@ -33,6 +33,10 @@ export class Model {
       this.people[peopleExists] = person;
       this.filteredPeople[peopleExists] = person;
     } else {
+      const newId = await databaseController.addPeople(person);
+      if (!newId) throw new Error("Error adding person");
+      person.id = Number(newId);
+      console.log(person);
       this.people.push(person);
       this.filteredPeople.push(person);
     }
