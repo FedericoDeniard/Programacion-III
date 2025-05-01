@@ -12,9 +12,13 @@ export class Model {
     this.hiddenValues = [];
   }
 
-  deletePeople(id) {
+  async deletePeople(id) {
     const person = this.people.find((person) => person.id === id);
     if (!person) throw new Error("Person not found");
+
+    const deletePeople = await databaseController.deletePeople(id);
+    if (!deletePeople) throw new Error("Error deleting person");
+
     const index = this.people.indexOf(person);
     this.people.splice(index, 1);
     this.filteredPeople.splice(index, 1);

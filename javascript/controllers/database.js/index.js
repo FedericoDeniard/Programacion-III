@@ -24,12 +24,14 @@ class DatabaseController {
     let couldDelete = true;
     const response = await fetch(this.url, {
       method: "DELETE",
-      contentType: "application/json",
-      body: JSON.stringify(id),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
     });
     if (response.status !== 200) {
-      throw new Error("Error al obtener los datos");
       couldDelete = false;
+      throw new Error("Error al obtener los datos");
     }
     return couldDelete;
   }

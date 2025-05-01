@@ -105,9 +105,9 @@ export class Controlller {
   }
   deleteButtonsListener() {
     this.View.dataForm.tableContainer.deleteButtons.forEach((button) => {
-      button.addEventListener("click", () => {
+      button.addEventListener("click", async () => {
         const id = Number(button.value);
-        this.Model.deletePeople(id);
+        await this.Model.deletePeople(id);
         this.updateTable();
       });
     });
