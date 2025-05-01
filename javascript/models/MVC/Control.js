@@ -10,7 +10,7 @@ export class Controlller {
   constructor(vista, modelo, initialData) {
     this.View = vista;
     this.Model = modelo;
-    this.Model.people = this.createPeople(initialData);
+    this.Model.people = initialData;
     this.Model.filteredPeople = this.Model.people;
     this.checkboxListener();
     this.professionListener();

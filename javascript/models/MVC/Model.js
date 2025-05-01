@@ -1,11 +1,13 @@
 import classMap from "../../constants/classMap.js";
+import databaseController from "../../controllers/database.js/index.js";
+import { Futbolista } from "../Futbolista.js";
+import { Profesional } from "../Profesional.js";
 
 export class Model {
-  people;
+  people = [];
   filteredPeople;
   hiddenValues;
   constructor() {
-    this.people = [];
     this.filteredPeople = [];
     this.hiddenValues = [];
   }
@@ -30,12 +32,14 @@ export class Model {
   }
 
   filterPeople(profession) {
+    this.instancePeople();
     let filteredPeople = [...this.people];
     this.filteredPeople = filteredPeople;
     filteredPeople = this.people.filter(
       (person) => person instanceof classMap[profession]
     );
     this.filteredPeople = filteredPeople;
+    console.log(filteredPeople);
     return filteredPeople;
   }
 
@@ -53,5 +57,13 @@ export class Model {
   findPerson(id) {
     const person = this.people.find((person) => person.id === id);
     return person;
+  }
+
+  instancePeople() {
+    const people = this.people.map((person) => {
+      const titulo = person.titulo;
+      return titulo ? new Profesional(person) : new Futbolista(person);
+    });
+    return people;
   }
 }
