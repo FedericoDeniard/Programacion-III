@@ -152,7 +152,7 @@ export class Controlller {
   }
 
   submitFormListener() {
-    this.View.formAbm.form.addEventListener("submit", (event) => {
+    this.View.formAbm.form.addEventListener("submit", async (event) => {
       event.preventDefault();
       const data = getFormValues(this.View.formAbm.form);
       try {
@@ -161,7 +161,7 @@ export class Controlller {
           classMap[this.View.formAbm.type.value].getProperties()
         );
         const person = new classMap[this.View.formAbm.type.value](cleanedData);
-        this.Model.addPeople(person);
+        await this.Model.addPeople(person);
         this.updateTable();
         this.View.formAbm.modalObject.modal.close();
       } catch (e) {

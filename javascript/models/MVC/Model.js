@@ -24,9 +24,12 @@ export class Model {
     this.filteredPeople.splice(index, 1);
   }
 
-  addPeople(person) {
+  async addPeople(person) {
     const peopleExists = this.people.findIndex((p) => p.id === person.id);
     if (peopleExists !== -1) {
+      const editPeople = await databaseController.editPeople(person);
+      if (!editPeople) throw new Error("Error editing person");
+
       this.people[peopleExists] = person;
       this.filteredPeople[peopleExists] = person;
     } else {

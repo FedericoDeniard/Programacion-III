@@ -35,6 +35,23 @@ class DatabaseController {
     }
     return couldDelete;
   }
+
+  async editPeople(person) {
+    let couldEdit = true;
+    const response = await fetch(this.url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(person),
+    });
+    if (response.status !== 200) {
+      couldEdit = false;
+      throw new Error("Error al obtener los datos");
+    }
+    console.log("editado", person);
+    return couldEdit;
+  }
 }
 
 const databaseController = new DatabaseController();
