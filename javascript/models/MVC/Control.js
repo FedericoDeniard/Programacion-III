@@ -18,48 +18,6 @@ export class Controlller {
     this.closeDialogListener();
   }
 
-  createPeople = (peopleList) => {
-    const people = [];
-    for (const person of peopleList) {
-      try {
-        if (person.equipo) {
-          const futbolista = new Futbolista({
-            id: person.id,
-            nombre: person.nombre,
-            apellido: person.apellido,
-            edad: person.edad,
-            equipo: person.equipo,
-            posicion: person.posicion,
-            cantidadGoles: person.cantidadGoles,
-          });
-          people.push(futbolista);
-        } else if (person.titulo) {
-          const profesional = new Profesional({
-            id: person.id,
-            nombre: person.nombre,
-            apellido: person.apellido,
-            edad: person.edad,
-            titulo: person.titulo,
-            facultad: person.facultad,
-            añoGraduacion: person.añoGraduacion,
-          });
-          people.push(profesional);
-        } else {
-          const persona = new Persona({
-            id: person.id,
-            nombre: person.nombre,
-            apellido: person.apellido,
-            edad: person.edad,
-          });
-          people.push(persona);
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    return people;
-  };
-
   checkboxListener() {
     const checkBoxes = this.View.filters.checkboxes;
     checkBoxes.forEach((checkbox) => {
