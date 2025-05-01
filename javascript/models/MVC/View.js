@@ -160,6 +160,7 @@ export class View {
   };
 
   setTableLoader = () => {
+    this.clearTable();
     let tableBody = this.dataForm.tableContainer.tbody;
     let spinnerContainer = document.createElement("div");
     spinnerContainer.classList.add("loader-container");

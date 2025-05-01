@@ -65,7 +65,12 @@ export class Controlller {
     this.View.dataForm.tableContainer.deleteButtons.forEach((button) => {
       button.addEventListener("click", async () => {
         const id = Number(button.value);
+        this.View.setTableLoader();
+        try {
         await this.Model.deletePeople(id);
+        } catch (e) {
+          console.log(e);
+        }
         this.updateTable();
       });
     });
@@ -87,8 +92,8 @@ export class Controlller {
   }
 
   updateTable() {
-    this.Model.filterPeople(this.View.filters.profession.value);
     this.View.setTableLoader();
+    this.Model.filterPeople(this.View.filters.profession.value);
     this.View.fillTable(
       this.Model.filteredPeople,
       this.Model.hiddenValues,
