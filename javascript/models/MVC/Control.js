@@ -4,10 +4,10 @@ import { cleanData, getFormValues } from "../../utils/forms.js";
 export class Controlller {
   View;
   Model;
-  constructor(vista, modelo, initialData) {
+  constructor(vista, modelo) {
     this.View = vista;
     this.Model = modelo;
-    this.Model.people = initialData;
+    this.Model.people = [];
     this.Model.filteredPeople = this.Model.people;
     this.checkboxListener();
     this.professionListener();
@@ -89,7 +89,9 @@ export class Controlller {
     });
   }
 
-  updateTable() {
+  async updateTable() {
+    this.View.setGeneralLoader();
+    await this.Model.loadPeople();
     this.Model.filterPeople(this.View.filters.profession.value);
     this.View.fillTable(
       this.Model.filteredPeople,
@@ -99,6 +101,7 @@ export class Controlller {
     this.deleteButtonsListener();
     this.editButtonsListener();
     this.updateAverageAge();
+    this.View.removeGeneralLoader();
   }
 
   updateAverageAge() {

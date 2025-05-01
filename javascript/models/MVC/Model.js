@@ -7,9 +7,18 @@ export class Model {
   people = [];
   filteredPeople;
   hiddenValues;
+  dataLoaded = false;
+
   constructor() {
     this.filteredPeople = [];
     this.hiddenValues = [];
+  }
+
+  async loadPeople() {
+    if (this.dataLoaded) return;
+    this.people = await databaseController.getPeople();
+    this.filteredPeople = this.people;
+    this.dataLoaded = true;
   }
 
   async deletePeople(id) {
