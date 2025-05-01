@@ -16,7 +16,7 @@ export class Persona {
   }
 
   #validatePerson(id, nombre, apellido, edad) {
-    if (!id || !nombre || !apellido || !edad) {
+    if (id < 0 || !nombre || !apellido || !edad) {
       throw new Error("All fields are required");
     }
     if (typeof id !== "number") {

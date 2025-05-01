@@ -36,7 +36,6 @@ export class Model {
       const newId = await databaseController.addPeople(person);
       if (!newId) throw new Error("Error adding person");
       person.id = Number(newId);
-      console.log(person);
       this.people.push(person);
       this.filteredPeople.push(person);
     }
@@ -50,7 +49,6 @@ export class Model {
       (person) => person instanceof classMap[profession]
     );
     this.filteredPeople = filteredPeople;
-    console.log(filteredPeople);
     return filteredPeople;
   }
 
@@ -58,7 +56,7 @@ export class Model {
     if (id) {
       return id;
     }
-    const newValue = "N/A";
+    const newValue = 0;
     return newValue;
   }
 

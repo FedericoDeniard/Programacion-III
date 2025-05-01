@@ -65,13 +65,14 @@ export class Controlller {
     this.View.dataForm.tableContainer.deleteButtons.forEach((button) => {
       button.addEventListener("click", async () => {
         const id = Number(button.value);
-        this.View.setTableLoader();
+        this.View.setGeneralLoader();
         try {
-        await this.Model.deletePeople(id);
+          await this.Model.deletePeople(id);
         } catch (e) {
           console.log(e);
         }
         this.updateTable();
+        this.View.removeGeneralLoader();
       });
     });
   }
@@ -92,7 +93,6 @@ export class Controlller {
   }
 
   updateTable() {
-    this.View.setTableLoader();
     this.Model.filterPeople(this.View.filters.profession.value);
     this.View.fillTable(
       this.Model.filteredPeople,
@@ -117,20 +117,23 @@ export class Controlller {
   submitFormListener() {
     this.View.formAbm.form.addEventListener("submit", async (event) => {
       event.preventDefault();
+      this.View.setGeneralLoader();
+      this.View.formAbm.modalObject.modal.close();
       const data = getFormValues(this.View.formAbm.form);
+      const cleanedData = cleanData(
+        data,
+        classMap[this.View.formAbm.type.value].getProperties()
+      );
+      const person = new classMap[this.View.formAbm.type.value](cleanedData);
       try {
-        const cleanedData = cleanData(
-          data,
-          classMap[this.View.formAbm.type.value].getProperties()
-        );
-        const person = new classMap[this.View.formAbm.type.value](cleanedData);
         await this.Model.addPeople(person);
-        this.updateTable();
-        this.View.formAbm.modalObject.modal.close();
       } catch (e) {
+        this.View.formAbm.modalObject.modal.showModal();
         console.log(e);
       } finally {
+        this.updateTable();
         this.View.formAbm.form.reset();
+        this.View.removeGeneralLoader();
       }
     });
   }

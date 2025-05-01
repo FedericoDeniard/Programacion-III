@@ -49,12 +49,11 @@ class DatabaseController {
       couldEdit = false;
       throw new Error("Error al obtener los datos");
     }
-    console.log("editado", person);
     return couldEdit;
   }
 
   async addPeople(person) {
-    if (person.id) delete person.id;
+    if (person.id !== undefined) delete person.id;
     const response = await fetch(this.url, {
       method: "POST",
       headers: {
