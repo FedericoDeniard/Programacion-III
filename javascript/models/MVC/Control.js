@@ -1,8 +1,5 @@
 import classMap from "../../constants/classMap.js";
 import { cleanData, getFormValues } from "../../utils/forms.js";
-import { Futbolista } from "../Futbolista.js";
-import { Persona } from "../Persona.js";
-import { Profesional } from "../Profesional.js";
 
 export class Controlller {
   View;
