@@ -1,5 +1,5 @@
 import classMap from "../../constants/classMap.js";
-import databaseController from "../../controllers/database.js/index.js";
+import databaseController from "../../controllers/database.js";
 import { Futbolista } from "../Futbolista.js";
 import { Profesional } from "../Profesional.js";
 

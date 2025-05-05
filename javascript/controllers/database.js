@@ -1,5 +1,5 @@
-import { Futbolista } from "../../models/Futbolista.js";
-import { Profesional } from "../../models/Profesional.js";
+import { Futbolista } from "../models/Futbolista.js";
+import { Profesional } from "../models/Profesional.js";
 
 class DatabaseController {
   url = "https://examenesutn.vercel.app/api/PersonasFutbolistasProfesionales";
