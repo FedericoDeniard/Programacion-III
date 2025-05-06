@@ -31,6 +31,9 @@ export class View {
       futbolistasFields: document.querySelectorAll(".futbolista-field"),
       profesionalFields: document.querySelectorAll(".profesional-field"),
     };
+    this.loader = {
+      loader: this.$("general-loader"),
+    };
   }
 
   $(id) {
@@ -171,30 +174,11 @@ export class View {
   };
 
   setGeneralLoader = () => {
-    let loaderContainer = document.createElement("div");
-    loaderContainer.classList.add("loader-container");
-
-    loaderContainer.style.position = "fixed";
-    loaderContainer.style.top = 0;
-    loaderContainer.style.left = 0;
-    loaderContainer.style.width = "100vw";
-    loaderContainer.style.height = "100vh";
-    loaderContainer.style.display = "flex";
-    loaderContainer.style.justifyContent = "center";
-    loaderContainer.style.alignItems = "center";
-    loaderContainer.style.backdropFilter = "blur(5px)";
-    loaderContainer.style.backgroundColor = "rgba(255, 255, 255, 0.6)";
-    loaderContainer.style.zIndex = "9999";
-
-    let spinner = document.createElement("div");
-    spinner.classList.add("loader");
-
-    loaderContainer.appendChild(spinner);
-    document.body.appendChild(loaderContainer);
+    console.log(this.loader);
+    this.loader.loader.style.display = "flex";
   };
 
   removeGeneralLoader = () => {
-    const loader = document.querySelector(".loader-container");
-    if (loader) loader.remove();
+    this.loader.loader.style.display = "none";
   };
 }
