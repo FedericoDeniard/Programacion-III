@@ -174,7 +174,6 @@ export class View {
   };
 
   setGeneralLoader = () => {
-    console.log(this.loader);
     this.loader.loader.style.display = "flex";
   };
 
