@@ -8,6 +8,10 @@ export class Model {
   filteredPeople;
   hiddenValues;
   dataLoaded = false;
+  sortParameter = {
+    name: "",
+    order: 0,
+  };
 
   constructor() {
     this.filteredPeople = [];
@@ -80,5 +84,31 @@ export class Model {
       return titulo ? new Profesional(person) : new Futbolista(person);
     });
     return people;
+  }
+
+  sortPeople() {
+    let textContent = this.sortParameter.name;
+    this.filteredPeople.sort((a, b) => {
+      if (a[textContent] < b[textContent]) {
+        return -this.sortParameter.order;
+      }
+      if (a[textContent] > b[textContent]) {
+        return this.sortParameter.order;
+      }
+      return 0;
+    });
+  }
+
+  changeSortValues(textContent) {
+    textContent = textContent.charAt(0).toLowerCase() + textContent.slice(1);
+    textContent = textContent.split(" ")[0];
+    if (this.sortParameter.name === textContent) {
+      this.sortParameter.order += 1;
+      this.sortParameter.order =
+        this.sortParameter.order > 1 ? -1 : this.sortParameter.order;
+    } else {
+      this.sortParameter.name = textContent;
+      this.sortParameter.order = 1;
+    }
   }
 }

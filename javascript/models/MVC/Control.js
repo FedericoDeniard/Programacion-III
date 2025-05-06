@@ -93,6 +93,8 @@ export class Controlller {
     this.View.setGeneralLoader();
     await this.Model.loadPeople();
     this.Model.filterPeople(this.View.filters.profession.value);
+    this.Model.sortPeople(this.Model.sortParameter.name);
+    this.View.sortParameter = this.Model.sortParameter;
     this.View.fillTable(
       this.Model.filteredPeople,
       this.Model.hiddenValues,
@@ -102,6 +104,7 @@ export class Controlller {
     this.editButtonsListener();
     this.updateAverageAge();
     this.View.removeGeneralLoader();
+    this.theadersListener();
   }
 
   updateAverageAge() {
@@ -135,6 +138,16 @@ export class Controlller {
         this.View.formAbm.form.reset();
         this.View.removeGeneralLoader();
       }
+    });
+  }
+
+  theadersListener() {
+    const headers = this.View.dataForm.tableContainer.thead.children[0];
+    Array.from(headers.children).forEach((header) => {
+      header.addEventListener("click", () => {
+        this.Model.changeSortValues(header.textContent);
+        this.updateTable();
+      });
     });
   }
 }

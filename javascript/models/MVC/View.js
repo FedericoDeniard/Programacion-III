@@ -5,6 +5,10 @@ export class View {
   dataForm;
   formAbm;
   filters;
+  sortParameter = {
+    name: "",
+    order: 0,
+  };
   constructor() {
     this.dataForm = {
       form: this.$("data-form"),
@@ -50,6 +54,16 @@ export class View {
     publicHeaders.forEach((header) => {
       const th = document.createElement("th");
       let textCapitalized = header.charAt(0).toUpperCase() + header.slice(1);
+      if (
+        this.sortParameter.name.toLowerCase() === textCapitalized.toLowerCase()
+      ) {
+        textCapitalized +=
+          this.sortParameter.order === 1
+            ? " ▲"
+            : this.sortParameter.order === -1
+            ? " ▼"
+            : "";
+      }
       th.textContent = textCapitalized;
       tableHeadRow.appendChild(th);
     });
@@ -61,7 +75,8 @@ export class View {
       const tableRow = document.createElement("tr");
       publicHeaders.forEach((header) => {
         const td = document.createElement("td");
-        td.textContent = person[header] || "N/A";
+        td.textContent =
+          person[header] !== undefined || 0 ? person[header] : "N/A";
         tableRow.appendChild(td);
       });
       if (canEdit && publicHeaders.length > 0) {
