@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --env-file=.env --experimental-strip-types dist/index.js",
     "build": "rollup -c",
-    "start": "rollup -c && node --env-file=.env dist/index.js"
+    "start": "rollup -c && node --env-file=.env dist/index.js",
+    "dev": "npm run build && npm run start"
   },
   "keywords": [],
   "author": "",
