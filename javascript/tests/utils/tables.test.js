@@ -4,25 +4,25 @@ import { Futbolista } from "../../models/Futbolista";
 import { Profesional } from "../../models/Profesional";
 
 describe("GetHeaders", () => {
-  const futbolista = new Futbolista(
-    1,
-    "John",
-    "Doe",
-    30,
-    "Boca",
-    "Delantero",
-    20
-  );
+  const futbolista = new Futbolista({
+    id: 1,
+    nombre: "John",
+    apellido: "Doe",
+    edad: 30,
+    equipo: "Boca",
+    posicion: "Delantero",
+    cantidadGoles: 20,
+  });
 
-  const profesional = new Profesional(
-    1,
-    "John",
-    "Doe",
-    30,
-    "Programación",
-    "UTN",
-    2020
-  );
+  const profesional = new Profesional({
+    id: 1,
+    nombre: "John",
+    apellido: "Doe",
+    edad: 30,
+    titulo: "Programación",
+    facultad: "UTN",
+    añoGraduacion: 2020,
+  });
 
   test("should return the headers of a Futbolista object", () => {
     const futbolistaHeaders = getHeadersFromArray([futbolista]);
@@ -73,11 +73,9 @@ describe("GetHeaders", () => {
     );
   });
 
-  test("should throw an error when attempting to get headers from an empty array", () => {
+  test("should return an empty array when attempting to get headers from an empty array", () => {
     const emptyArray = [];
-    expect(() => getHeadersFromArray(emptyArray)).toThrow(
-      "Input cannot be empty"
-    );
+    expect(getHeadersFromArray(emptyArray)).toEqual(new Set());
   });
 
   test("should fail when attempting to get headers from a non-array input", () => {

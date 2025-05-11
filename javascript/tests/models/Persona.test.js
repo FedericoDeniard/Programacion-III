@@ -3,8 +3,8 @@ import { describe, test, expect } from "vitest";
 
 describe("Persona", () => {
   test("should throw an error when trying to instantiate a Persona object", () => {
-    expect(() => new Persona(1, "John", "Doe", 30)).toThrowError(
-      "This class is abstract"
-    );
+    expect(
+      () => new Persona({ id: 1, nombre: "John", apellido: "Doe", edad: 30 })
+    ).toThrowError("This class is abstract");
   });
 });
