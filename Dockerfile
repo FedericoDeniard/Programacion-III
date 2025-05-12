@@ -7,6 +7,8 @@ WORKDIR /app
 # Copia el contenido de la carpeta clase-node dentro del contenedor
 COPY ./clase-node/ /app
 
+COPY ./clase-node/.env /app/.env
+
 # Instala las dependencias
 RUN npm install
 
