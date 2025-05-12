@@ -1,17 +1,23 @@
 # Imagen base de Node
 FROM node:22
 
-# Setea el directorio de trabajo dentro del contenedor
-WORKDIR /app
+# Crea estructura de carpetas
+RUN mkdir -p /src/app /src/javascript
 
-# Copia el contenido de la carpeta clase-node dentro del contenedor
-COPY ./clase-node/ /app
+# Setea el directorio de trabajo
+WORKDIR /src/app
+
+# Copia el backend (clase-node) a /src/app
+COPY ./clase-node/ /src/app
+
+# Copia la carpeta javascript a /src/javascript
+COPY ./javascript/ /src/javascript
 
 # Instala las dependencias
 RUN npm install
 
-# Expone el puerto que usa tu app (cambiá si usás otro)
+# Expone el puerto
 EXPOSE 8080
 
-# Comando que arranca tu app
+# Comando de arranque
 CMD ["npm", "start"]
