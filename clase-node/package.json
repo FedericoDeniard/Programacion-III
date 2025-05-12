@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup -c",
-    "start": "rollup -c && node --env-file=.env dist/index.js",
-    "dev": "npm run build && npm run start"
+    "dev": "rollup -c && node --env-file=.env dist/index.js",
+    "start": "rollup -c && node dist/index.js"
   },
   "keywords": [],
   "author": "",
